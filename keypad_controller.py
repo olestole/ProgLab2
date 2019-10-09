@@ -1,2 +1,6 @@
-print("Halla verden")
-print('Knullegutta')
+'''Keypad Controller class, with functions'''
+
+class KPC:
+
+    def __init__(self):
+

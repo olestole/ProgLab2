@@ -2,5 +2,5 @@
 
 class KPC:
 
-    def __init__(self):
+    print()
 

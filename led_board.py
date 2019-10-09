@@ -2,4 +2,4 @@
 
 class Led_board:
 
-    def __init__(self):
+    print()

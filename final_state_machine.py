@@ -2,4 +2,5 @@
 
 class FSM:
 
-    def __init__(self):
+    def add_rule(self, r):
+        rule = r

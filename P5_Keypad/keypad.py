@@ -9,21 +9,3 @@ class Keypad:
 
 for i in range(10):
     print("MERGE")
-
-#HALLAAAA
-#HALLAAAA
-#HALLAAAA
-#HALLAAAA
-
-
-#BALLAAA
-#BALLAAA
-#BALLAAA
-#BALLAAA
-
-
-
-
-
-#gittttt
-#gittttt

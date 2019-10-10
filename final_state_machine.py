@@ -5,9 +5,9 @@ class FSM:
     def __init__(self):
         self.rule_list = [] #list of rules
 
-    def add_rule(self, r):
+    def add_rule(self, rule):
         '''Add rule to rule list'''
-        self.rule_list.append(r)
+        self.rule_list.append(rule)
 
     def get_next_signal(self):
         '''Query the agent for the next signal'''

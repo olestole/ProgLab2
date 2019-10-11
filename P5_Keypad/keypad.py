@@ -1,17 +1,14 @@
 '''Keypad class, with functions'''
 
-
 class Keypad:
 
-    print('test changing one file')
-    print("Testing the revert function")
-    print("Testing the revert function2")
+    def setup(self):
+        '''Set the proper mode via: GPIO.setmode(GPIO.BCM). Also, use GPIO functions to set the row
+         pins as outputs and the column pins as inputs'''
 
+    def do_polling(self):
+        '''Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
 
-d = {1: "hei", 2: "på", 3: "deg", 4: "din", 5: ["sei", "ja", "jaaaaa"]}
-
-for k, v in d.items():
-    if type(v) == list:
-        for i in v:
-            print(i)
-    print("key: ", k, "\tValue: ", v)
+    def get_next_signal(self):
+        '''This is the main interface between the agent and the keypad.
+         It should initiate repeated calls to do polling until a key press is detected'''

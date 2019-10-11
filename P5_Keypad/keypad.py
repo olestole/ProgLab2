@@ -1,11 +1,17 @@
 '''Keypad class, with functions'''
 
 import RPi.GPIO as GPIO
+import time
+
+ROWS = [18, 23, 24, 25]
+COLUMNS = [17, 22, 27]
+
 
 class Keypad:
 
     def setup(self):
-        '''Set the proper mode via: GPIO.setmode(GPIO.BCM). Also, use GPIO functions to set the row
+
+        ''' Set the proper mode via: GPIO.setmode(GPIO.BCM). Also, use GPIO functions to set the row
          pins as outputs and the column pins as inputs'''
 
         GPIO.setmode(GPIO.BCM)
@@ -19,8 +25,36 @@ class Keypad:
         GPIO.setup(27, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
     def do_polling(self):
-    '''Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
+
+        ''' Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
+
+        row_col = ()
+
+        for row in ROWS:
+            GPIO.output(row, GPIO.HIGH)
+
+            for col in COLUMNS:
+
+                if GPIO.input(col) == GPIO.HIGH:
+
+                    """ IMPLEMENT: Avoid noisy inputs from the column pins, it helps to consider the column pin to be 
+                    actually high only if repeated measurements (for example, 20 in a row with a 10 millisecond delay 
+                    between each reading) all show a high value. You can use the time.sleep() command from Python’s 
+                    time package to support this simple (but very important) measure-wait-measure loop."""
+
+                    row_col = tuple((row, col))
+
+            GPIO.output(row, GPIO.LOW)
+
+        return row_col
+
+
 
     def get_next_signal(self):
         '''This is the main interface between the agent and the keypad.
          It should initiate repeated calls to do polling until a key press is detected'''
+
+        pressed = False
+
+        while not pressed:
+            pass

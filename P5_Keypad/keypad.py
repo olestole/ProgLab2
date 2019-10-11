@@ -28,7 +28,7 @@ class Keypad:
 
         ''' Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
 
-        row_col = ()
+        row_col = ()    # Tuple holding the row, col which was pressed
 
         for row in ROWS:
             GPIO.output(row, GPIO.HIGH)
@@ -42,7 +42,7 @@ class Keypad:
                     between each reading) all show a high value. You can use the time.sleep() command from Python’s 
                     time package to support this simple (but very important) measure-wait-measure loop."""
 
-                    row_col = tuple((row, col))
+                    row_col = (row, col)
 
             GPIO.output(row, GPIO.LOW)
 
@@ -57,4 +57,8 @@ class Keypad:
         pressed = False
 
         while not pressed:
-            pass
+            row_col = self.do_polling()
+            if row_col is not None:
+                return row_col
+
+

@@ -18,8 +18,8 @@ class Keypad:
         GPIO.setup(22, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
         GPIO.setup(27, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 
-        def do_polling(self):
-        '''Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
+    def do_polling(self):
+    '''Use nested loops (discussed above) to determine the key currently being pressed on the keypad'''
 
     def get_next_signal(self):
         '''This is the main interface between the agent and the keypad.

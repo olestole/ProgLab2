@@ -11,22 +11,20 @@ from time import sleep
 
 class Led_board:
 
+    pins = [18, 23, 24]
 
+    pin_led_states = [
+        [1, 0, -1],  # A
+        [0, 1, -1],  # B
+        [-1, 1, 0],  # C
+        [-1, 0, 1],  # D
+        [1, -1, 0],  # E
+        [0, -1, 1]  # F
+    ]
 
     def setup(self):
         '''Set the proper mode via: GPIO.setmode(GPIO.BCM)'''
         GPIO.setmode(GPIO.BCM)
-
-        self.pins = [18, 23, 24]
-
-        self.pin_led_states = [
-            [1, 0, -1],  # A
-            [0, 1, -1],  # B
-            [-1, 1, 0],  # C
-            [-1, 0, 1],  # D
-            [1, -1, 0],  # E
-            [0, -1, 1]  # F
-        ]
 
     def set_pin(self, pin_index, pin_state):
         if pin_state == -1:
@@ -59,10 +57,11 @@ class Led_board:
 
 def main():
     board = Led_board()
-    board.setup()
-    board.power_up()
-    sleep(5)
-    board.power_down()
+    #board.setup()
+    #board.power_up()
+    #sleep(5)
+    #board.power_down()
+    board.light_led(4)
 
 if __name__ == '__main__':
     main()

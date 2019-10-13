@@ -67,6 +67,7 @@ class Keypad:
 
 
 def main():
+    print("STARTED MAIN FUNC")
     KP = Keypad()
     KP.setup()
     KP.get_next_signal()

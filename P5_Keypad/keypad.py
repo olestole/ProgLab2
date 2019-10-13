@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 import time
 
 ROWS = [18, 23, 24, 25]
-COLUMNS = [17, 22, 27]
+COLUMNS = [17, 27, 22]
 
 
 class Keypad:

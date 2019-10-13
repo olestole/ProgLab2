@@ -19,7 +19,8 @@ class Led_board:
         [-1, 1, 0],  # C
         [-1, 0, 1],  # D
         [1, -1, 0],  # E
-        [0, -1, 1]  # F
+        [0, -1, 1],  # F
+        [1, 1, 1]    # All leds
     ]
 
     def setup(self):
@@ -41,6 +42,7 @@ class Led_board:
 
     def flash_all_leds(self):
         '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
+        self.light_led(6)
 
     def twinkle_all_leds(self):
         '''Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method'''
@@ -60,15 +62,8 @@ def main():
     print("START")
     board = Led_board()
     board.setup()
-    #board.power_up()
-    #sleep(5)
-    #board.power_down()
-    board.light_led(0)
-    board.light_led(1)
-    board.light_led(2)
-    board.light_led(3)
-    board.light_led(4)
-    board.light_led(5)
+    board.flash_all_leds()
+
 
 if __name__ == '__main__':
     main()

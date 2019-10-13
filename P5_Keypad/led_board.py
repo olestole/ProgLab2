@@ -11,7 +11,7 @@ from time import sleep
 
 class Led_board:
 
-    pins = [18, 23, 24]
+    pins = [13, 20, 21]
 
     pin_led_states = [
         [1, 0, -1],  # A

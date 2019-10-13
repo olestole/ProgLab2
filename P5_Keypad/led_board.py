@@ -56,6 +56,7 @@ class Led_board:
         self.light_led(5)
 
 def main():
+    print("START")
     board = Led_board()
     #board.setup()
     #board.power_up()

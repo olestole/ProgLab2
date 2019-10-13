@@ -68,7 +68,7 @@ class Keypad:
             row_col = self.do_polling()
             if row_col:
                 print(row_col)
-                return row_col
+                #return row_col
 
 
 def main():

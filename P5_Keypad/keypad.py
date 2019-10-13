@@ -71,14 +71,17 @@ class Keypad:
             row_col = self.do_polling()
             if row_col:
                 print(row_col)
-                #return row_col
+                return row_col
 
 
 def main():
     print("STARTED MAIN FUNC")
     KP = Keypad()
     KP.setup()
-    KP.get_next_signal()
+
+    for i in range(10):
+        KP.get_next_signal()
+
 
 
 if __name__ == "__main__":

@@ -58,11 +58,11 @@ class Led_board:
 def main():
     print("START")
     board = Led_board()
-    #board.setup()
-    #board.power_up()
-    #sleep(5)
-    #board.power_down()
-    board.light_led(4)
+    board.setup()
+    board.power_up()
+    sleep(5)
+    board.power_down()
+    #board.light_led(4)
 
 if __name__ == '__main__':
     main()

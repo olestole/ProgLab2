@@ -81,6 +81,7 @@ def main():
 
     for i in range(10):
         KP.get_next_signal()
+        time.sleep(1)
 
 
 

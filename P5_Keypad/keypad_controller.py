@@ -6,7 +6,7 @@ class KPC:
         self.pointer_keypad = p_keypad
         self.pointer_ledboard = p_ledboard
         '''a few simple strings or arrays for holding important sequences of keystrokes, such as a passcode-buffer for all numbers in an ongoing password-entry attempt'''
-        self.pathname = p_name #the complete pathname to the file holding the KPC’s password
+        self.pathname = p_name  # the complete pathname to the file holding the KPC’s password
         self.override_signal = o_signal
         '''slotsforholdingtheLEDid(Lid)andlightingduration(Ldur)–bothenteredviathekeypad – so that it can initiate the action of turning a specific LED on for a specific length of time'''
 

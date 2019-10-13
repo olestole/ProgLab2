@@ -5,6 +5,20 @@ import time
 
 ROWS = [18, 23, 24, 25]
 COLUMNS = [17, 27, 22]
+SIGNALS = {
+    (18, 17): 1,
+    (18, 27): 2,
+    (18, 22): 3,
+    (23, 17): 4,
+    (23, 27): 5,
+    (23, 22): 6,
+    (24, 17): 7,
+    (24, 27): 8,
+    (24, 22): 9,
+    (25, 17): '*',
+    (25, 27): 0,
+    (25, 22): '#',
+}
 
 
 class Keypad:
@@ -71,6 +85,7 @@ class Keypad:
             row_col = self.do_polling()
             if row_col:
                 print(row_col)
+                print(SIGNALS[row_col])
                 return row_col
 
 
@@ -81,7 +96,7 @@ def main():
 
     for i in range(10):
         KP.get_next_signal()
-        time.sleep(1)
+        time.sleep(0.5)
 
 
 

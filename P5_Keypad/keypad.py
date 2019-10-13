@@ -9,6 +9,9 @@ COLUMNS = [17, 22, 27]
 
 class Keypad:
 
+    def __init__(self):
+        pass
+
     def setup(self):
 
         ''' Set the proper mode via: GPIO.setmode(GPIO.BCM). Also, use GPIO functions to set the row
@@ -59,11 +62,15 @@ class Keypad:
         while not pressed:
             row_col = self.do_polling()
             if row_col is not None:
+                print(row_col)
                 return row_col
 
 
 def main():
+    KP = Keypad()
+    KP.setup()
+    KP.get_next_signal()
 
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     main()

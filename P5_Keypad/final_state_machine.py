@@ -3,6 +3,7 @@
 class FSM:
 
     def __init__(self):
+        # self.curr_state = s0
         self.rule_list = [] #list of rules
 
     def add_rule(self, rule):
@@ -24,3 +25,19 @@ class FSM:
     def main_loop(self):
         '''Use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method'''
 
+
+class Rule:
+
+    def __init__(self, state1, state2, signal, action):
+        self.state1 = state1
+        self.state2 = state2
+        self.signal = signal
+        self.action = action
+
+
+def signal_is_digit(signal):
+    return 48 <= ord(signal) <= 57
+
+def all_signals(signal):
+    legal = [1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#']
+    return signal in legal

@@ -33,7 +33,7 @@ class Keypad:
 
         row_col = ()    # Tuple holding the row, col which was pressed
 
-        print("IN DO_POLLING")
+        #print("IN DO_POLLING")
 
         for row in ROWS:
             GPIO.output(row, GPIO.HIGH)
@@ -63,10 +63,10 @@ class Keypad:
 
         while not pressed:
 
-            print("IN GET_NEXT_SIGNAL")
+            #print("IN GET_NEXT_SIGNAL")
 
             row_col = self.do_polling()
-            if row_col is not None:
+            if row_col:
                 print(row_col)
                 return row_col
 
@@ -80,3 +80,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+a = (1, 2)
+print(not a)

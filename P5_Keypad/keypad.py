@@ -4,10 +4,13 @@ import RPi.GPIO as GPIO
 import time
 
 ROWS = [18, 23, 24, 25]
-COLUMNS = [17, 22, 27]
+COLUMNS = [17, 27, 22]
 
 
 class Keypad:
+
+    def __init__(self):
+        pass
 
     def setup(self):
 
@@ -30,6 +33,8 @@ class Keypad:
 
         row_col = ()    # Tuple holding the row, col which was pressed
 
+        #print("IN DO_POLLING")
+
         for row in ROWS:
             GPIO.output(row, GPIO.HIGH)
 
@@ -42,7 +47,10 @@ class Keypad:
                     between each reading) all show a high value. You can use the time.sleep() command from Python’s 
                     time package to support this simple (but very important) measure-wait-measure loop."""
 
-                    row_col = (row, col)
+                    # Sleep to verify that it's still HIGH
+                    time.sleep(0.01)
+                    if GPIO.input(col) == GPIO.HIGH:
+                        row_col = (row, col)
 
             GPIO.output(row, GPIO.LOW)
 
@@ -57,8 +65,21 @@ class Keypad:
         pressed = False
 
         while not pressed:
+
+            #print("IN GET_NEXT_SIGNAL")
+
             row_col = self.do_polling()
-            if row_col is not None:
-                return row_col
+            if row_col:
+                print(row_col)
+                #return row_col
 
 
+def main():
+    print("STARTED MAIN FUNC")
+    KP = Keypad()
+    KP.setup()
+    KP.get_next_signal()
+
+
+if __name__ == "__main__":
+    main()

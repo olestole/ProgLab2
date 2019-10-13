@@ -57,9 +57,16 @@ class Led_board:
         '''Led flash when turning off system'''
         self.light_led(5)
 
+def main():
+    board = Led_board()
+    board.setup()
+    board.power_up()
+    sleep(5)
+    board.power_down()
 
-board = Led_board()
-board.setup()
-board.power_up()
-sleep(5)
-board.power_down()
+if __name__ == '__main__':
+    main()
+
+
+
+

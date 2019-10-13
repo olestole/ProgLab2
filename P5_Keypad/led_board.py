@@ -42,7 +42,13 @@ class Led_board:
 
     def flash_all_leds(self):
         '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
-        self.light_led(6)
+        while True:
+            self.light_led(0)
+            self.light_led(1)
+            self.light_led(2)
+            self.light_led(3)
+            self.light_led(4)
+            self.light_led(5)
 
     def twinkle_all_leds(self):
         '''Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method'''

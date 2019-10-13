@@ -55,7 +55,6 @@ class Led_board:
         '''Led flash when turning off system'''
         self.light_led(5)
 
-    def
 
 def main():
     print("START")

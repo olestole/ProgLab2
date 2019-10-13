@@ -20,7 +20,7 @@ class Led_board:
         [-1, 0, 1],  # D
         [1, -1, 0],  # E
         [0, -1, 1],  # F
-        [1, 1, -1]    # All leds
+        [1, 0, -1]    # All leds
     ]
 
     def setup(self):

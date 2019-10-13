@@ -68,6 +68,7 @@ class Keypad:
             row_col = self.do_polling()
             if row_col:
                 print(row_col)
+                time.sleep(1)
                 #return row_col
 
 

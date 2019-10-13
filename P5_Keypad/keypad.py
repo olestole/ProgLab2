@@ -47,7 +47,10 @@ class Keypad:
                     between each reading) all show a high value. You can use the time.sleep() command from Python’s 
                     time package to support this simple (but very important) measure-wait-measure loop."""
 
-                    row_col = (row, col)
+                    # Sleep to verify that it's still HIGH
+                    time.sleep(0.01)
+                    if GPIO.input(col) == GPIO.HIGH:
+                        row_col = (row, col)
 
             GPIO.output(row, GPIO.LOW)
 
@@ -68,7 +71,6 @@ class Keypad:
             row_col = self.do_polling()
             if row_col:
                 print(row_col)
-                time.sleep(1)
                 #return row_col
 
 
@@ -81,6 +83,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-a = (1, 2)
-print(not a)

@@ -92,6 +92,10 @@ class KPC:
     def choose_duration(self, digit):
         self.Ldur += digit
 
+    def begin_duration_entry(self):
+        """Duration"""
+        print("Write the duration")
+
     def complete_duration(self):
         '''Using values stored in the Lid and Ldur slots, call the LED Board and request that LED # Lid be turned on for Ldur seconds'''
         self.pointer_ledboard.light_one_led(self.Lid, self.Ldur)

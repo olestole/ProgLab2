@@ -2,6 +2,7 @@
 
 from keypad_controller import KPC
 from keypad import Keypad
+from led_board import Led_board
 import time
 
 
@@ -15,8 +16,13 @@ class FSM:
 
     def __init__(self, k_pad_controller, keypad, l_board):
         self.agent = k_pad_controller
+
         self.keypad = keypad
+        self.keypad.setup()
+
         self.led_board = l_board
+        self.led_board.setup()
+        
         self.curr_state = "s_init"
         self.rule_list = [] #list of rules
         self.curr_signal = None
@@ -60,11 +66,9 @@ class FSM:
 
     def main_loop(self):
         '''Use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method'''
-        self.keypad.setup()
         for i in range(10):
             self.keypad.get_next_signal()
             self.run_rules()
-            
 
             time.sleep(0.5)
 
@@ -84,3 +88,14 @@ class Rule:
         self.state2 = state2
         self.action = action
 
+def main():
+    kpc = KPC()
+    keypad = Keypad()
+    led_board = Led_board()
+
+    fsm = FSM()
+    fsm.main_loop(kpc, keypad, led_board)
+
+
+if __name__ == "__main__":
+    main()

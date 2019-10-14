@@ -29,24 +29,26 @@ class FSM:
 
         '''Password rules'''
         a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry())
-        a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit())
+        a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit(self.curr_signal))
         a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password())
         a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent())
         a5 = Rule('s_verify', 's_active', 'Y', self.agent.fully_activate_agent())
         a6 = Rule('s_verify', 's_init', 'all_symbols', self.agent.reset_agent())
         a11 = Rule('s_active', 's_read_2', '*', self.agent.init_passcode_entry)
-        a21 = Rule('s_read_2', 's_read_2', 'all_digit', self.agent.append_next_password_digit())
+        a21 = Rule('s_read_2', 's_read_2', 'all_digits', self.agent.append_next_password_digit(self.curr_signal))
         a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password())
         a61 = Rule('s_read_2', 's_active', 'all_symbols', self.agent.refresh_agent())
-        a22 = Rule('s_read_3', 's_read_3', 'all_digit', self.agent.append_next_password_digit_old())
+        a22 = Rule('s_read_3', 's_read_3', 'all_digits', self.agent.append_next_password_digit_old(self.curr_signal))
         a8 = Rule('s_read_3', 's_active', '*', self.agent.compare_new_passwords())
         a62 = Rule('s_read_3', 's_active', 'all_symbols', self.agent.refresh_agent())
 
         '''Light rules'''
-        s1 = Rule('s_active', 's_led', '0-5_digits', self.agent.choose_led())
+        s1 = Rule('s_active', 's_led', '0-5_digits', self.agent.choose_led(self.curr_signal))
         s2 = Rule('s_led', 's_time', '*', self.agent.begin_duration_entry())
-        s3 = Rule('s_time', 's_time', 'all_digit', self.agent.choose_duration())
+        s3 = Rule('s_time', 's_time', 'all_digits', self.agent.choose_duration(self.curr_signal))
         s4 = Rule('s_time', 's_active', '*', self.agent.complete_duration())
+        s5 = Rule('s_active', 's_logout', '#', self.agent.begin_logout())
+        s6 = Rule('s_logout', 's_done', '#', self.agent.exit_action())
 
         self.rule_list.append(a1)
         self.rule_list.append(a2)
@@ -62,6 +64,13 @@ class FSM:
         self.rule_list.append(a8)
         self.rule_list.append(a62)
 
+        self.rule_list.append(s1)
+        self.rule_list.append(s2)
+        self.rule_list.append(s3)
+        self.rule_list.append(s4)
+        self.rule_list.append(s5)
+        self.rule_list.append(s6)
+
 
     def get_next_signal(self):
         '''Query the agent for the next signal'''
@@ -71,7 +80,7 @@ class FSM:
     def run_rules(self):
         '''Go through the rule set, in order, applying each rule until one of the rules is fired'''
         for i in self.rule_list:
-            if i.state1 == self.curr_state and self.curr_signal in i.legal_signals:
+            if i.state1 == self.curr_state and i.curr_signal in i.legal_signals:
                 self.curr_state = i.state2
                 i.action()
 
@@ -85,7 +94,7 @@ class FSM:
 
     def main_loop(self):
         '''Use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method'''
-        for i in range(10):
+        while self.curr_state != 's_done':
             self.keypad.get_next_signal()
             self.run_rules()
 
@@ -105,7 +114,6 @@ class Rule:
             self.legal_signals = [0,1,2,3,4,5]
         else:
             self.legal_signals = signal
-
         self.state2 = state2
         self.action = action
 

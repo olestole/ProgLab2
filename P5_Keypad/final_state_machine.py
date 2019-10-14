@@ -2,6 +2,7 @@
 
 from keypad_controller import KPC
 from keypad import Keypad
+import time
 
 
 
@@ -59,6 +60,13 @@ class FSM:
 
     def main_loop(self):
         '''Use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method'''
+        self.keypad.setup()
+        for i in range(10):
+            self.keypad.get_next_signal()
+            self.run_rules()
+            
+
+            time.sleep(0.5)
 
 
 

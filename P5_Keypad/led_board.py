@@ -100,7 +100,7 @@ def main():
     print("START")
     board = Led_board()
     board.setup()
-    board.flash_all_leds()
+    board.flash_all_leds(10)
 
 
 if __name__ == '__main__':

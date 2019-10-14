@@ -118,6 +118,7 @@ class Rule:
         self.action = action
 
 def main():
+    print("START")
     keypad = Keypad()
     led_board = Led_board()
     kpc = KPC(keypad, led_board, "path", "6969")

@@ -1,20 +1,25 @@
 '''Keypad Controller class, with functions'''
 
+import keypad, led_board
+
 class KPC:
 
     def __init__(self, p_keypad, p_ledboard, p_name, o_signal):
         self.pointer_keypad = p_keypad
         self.pointer_ledboard = p_ledboard
         '''a few simple strings or arrays for holding important sequences of keystrokes, such as a passcode-buffer for all numbers in an ongoing password-entry attempt'''
+        self.password_buffer = ""
         self.pathname = p_name  # the complete pathname to the file holding the KPC’s password
         self.override_signal = o_signal
         '''slotsforholdingtheLEDid(Lid)andlightingduration(Ldur)–bothenteredviathekeypad – so that it can initiate the action of turning a specific LED on for a specific length of time'''
 
     def init_passcode_entry(self):
         '''Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board. This should be done when the user first presses the keypad'''
+        self.pointer_ledboard.power_up()
 
     def get_next_signal(self):
         '''Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key'''
+        return self.pointer_keypad.get_next_signal()
 
     def verify_login(self):
         '''Check that the password just entered via the keypad matches that in the pass- word file.
@@ -31,9 +36,26 @@ class KPC:
 
     def flash_leds(self):
         '''Call the LED Board and request the flashing of all LEDs'''
+        self.pointer_ledboard.flash_all_leds()
 
     def twinkle_leds(self):
         '''Call the LED Board and request the twinkling of all LEDs'''
+        self.pointer_ledboard.twinkle_all_leds()
 
     def exit_action(self):
         '''Call the LED Board to initiate the ”power down” lighting sequence'''
+        self.pointer_ledboard.power_down()
+
+def main():
+    print("START")
+    qpad = Keypad()
+    ledboard = Led_board()
+    kpc = KPC(qpad, ledboard, "txt", "passw")
+    print(kpc.flash_leds(5))
+
+
+
+
+if __name__ == '__main__':
+    main()
+

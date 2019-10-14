@@ -1,5 +1,8 @@
 '''Finite State Machine class, with functions'''
 
+ALL_SYMBOLS = [1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#']
+ALL_DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
 class FSM:
 
     def __init__(self):
@@ -33,11 +36,3 @@ class Rule:
         self.state2 = state2
         self.signal = signal
         self.action = action
-
-
-def signal_is_digit(signal):
-    return 48 <= ord(signal) <= 57
-
-def all_signals(signal):
-    legal = [1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#']
-    return signal in legal

@@ -21,6 +21,7 @@ class KPC:
         '''Clear the passcode-buffer and initiate a ”power up” lighting sequence on the LED Board. This should be done when the user first presses the keypad'''
         self.password_buffer = ""
         self.pointer_ledboard.power_up()
+        print("POWER UP")
 
     def append_next_password_digit_old(self, digit):
         """Append digit to password buffer old"""

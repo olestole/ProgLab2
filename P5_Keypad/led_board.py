@@ -50,7 +50,7 @@ class Led_board:
         '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
         t_end = time.time() + k
         while time.time() < t_end:
-            for i in range(10):
+            for i in range(100):
                 self.light_led(0)
                 self.light_led(1)
                 self.light_led(2)

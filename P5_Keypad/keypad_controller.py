@@ -50,7 +50,9 @@ class KPC:
 def main():
     print("START")
     qpad = Keypad()
+    qpad.setup()
     ledboard = Led_board()
+    ledboard.setup()
     kpc = KPC(qpad, ledboard, "txt", "passw")
     kpc.flash_leds(5)
 

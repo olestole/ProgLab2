@@ -5,8 +5,11 @@ ALL_DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 class FSM:
 
-    def __init__(self):
-        # self.curr_state = s0
+    def __init__(self, k_pad_controller, keypad, l_board):
+        self.agent = k_pad_controller
+        self.keypad = keypad
+        self.led_board = l_board
+        self.state =
         self.rule_list = [] #list of rules
 
     def add_rule(self, rule):

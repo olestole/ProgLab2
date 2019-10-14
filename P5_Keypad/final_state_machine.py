@@ -79,6 +79,7 @@ class FSM:
 
     def run_rules(self):
         '''Go through the rule set, in order, applying each rule until one of the rules is fired'''
+        print("RUN RULES")
         for i in self.rule_list:
             if i.state1 == self.curr_state and i.curr_signal in i.legal_signals:
                 self.curr_state = i.state2

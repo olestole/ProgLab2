@@ -71,18 +71,17 @@ class FSM:
         self.rule_list.append(s5)
         self.rule_list.append(s6)
 
-
     def get_next_signal(self):
         '''Query the agent for the next signal'''
         self.curr_signal = self.agent.get_next_signal()
-        print(self.curr_signal)
-
 
     def run_rules(self):
         '''Go through the rule set, in order, applying each rule until one of the rules is fired'''
         print("RUN RULES")
         print(self.curr_signal)
         for i in self.rule_list:
+            print(i.state1.equals(self.curr_state))
+            print(self.curr_signal in i.legal_signals)
             if i.state1.equals(self.curr_state) and self.curr_signal in i.legal_signals:
                 print("FOUND RULE")
                 self.curr_state = i.state2

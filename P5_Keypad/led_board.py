@@ -1,7 +1,7 @@
 '''Led Board class, with functions'''
 
 import RPi.GPIO as GPIO
-from time import sleep
+import time
 
 """
         GPIO.setup(13, GPIO.IN)  = pin0
@@ -20,7 +20,7 @@ class Led_board:
         [-1, 0, 1],  # D
         [1, -1, 0],  # E
         [0, -1, 1],  # F
-        [1, 0, -1]    # All leds
+        [0, 0, 0]    # All leds off
     ]
 
     def setup(self):
@@ -42,26 +42,52 @@ class Led_board:
 
     def flash_all_leds(self):
         '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
-        while True:
+        t_end = time.time() + 5
+        while time.time() < t_end:
+            for i in range(10):
+                self.light_led(0)
+                self.light_led(1)
+                self.light_led(2)
+                self.light_led(3)
+                self.light_led(4)
+                self.light_led(5)
             self.light_led(0)
-            self.light_led(1)
-            self.light_led(2)
-            self.light_led(3)
-            self.light_led(4)
-            self.light_led(5)
+            time.sleep(0.5)
+        self.light_led(0)
 
     def twinkle_all_leds(self):
         '''Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method'''
-
+        t_end = time.time() + 5
+        while time.time() < t_end:
+            self.light_led(0)
+            time.sleep(0.2)
+            self.light_led(1)
+            time.sleep(0.2)
+            self.light_led(2)
+            time.sleep(0.2)
+            self.light_led(3)
+            time.sleep(0.2)
+            self.light_led(4)
+            time.sleep(0.2)
+            self.light_led(5)
+            time.sleep(0.2)
+        self.light_led(0)
 
     def power_up(self):
         '''Led flash when turning on system'''
-        self.light_led(4)
+        t_end = time.time() + 3
+        while time.time() < t_end:
+            self.light_led(4)
+        self.light_led(0)
 
 
     def power_down(self):
         '''Led flash when turning off system'''
-        self.light_led(5)
+        t_end = time.time() + 3
+        while time.time() < t_end:
+            self.light_led(5)
+        self.light_led(0)
+
 
 
 def main():

@@ -52,6 +52,9 @@ class FSM:
         s5 = Rule('s_active', 's_logout', '#', self.agent.begin_logout())
         s6 = Rule('s_logout', 's_done', '#', self.agent.exit_action())
 
+        # Forslag til å endre 189418 append kall
+        # self.rule_list.append([a1, a2, a3, a4, a5, a6, a11, a21, a7, a61, a22, a8, a62, s1, s2, s3, s4, s5, s6])
+
         self.rule_list.append(a1)
         self.rule_list.append(a2)
         self.rule_list.append(a3)

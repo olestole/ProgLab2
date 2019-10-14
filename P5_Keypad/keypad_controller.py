@@ -34,13 +34,13 @@ class KPC:
     def light_one_led(self):
         '''Using values stored in the Lid and Ldur slots, call the LED Board and request that LED # Lid be turned on for Ldur seconds'''
 
-    def flash_leds(self):
+    def flash_leds(self, k):
         '''Call the LED Board and request the flashing of all LEDs'''
-        self.pointer_ledboard.flash_all_leds()
+        self.pointer_ledboard.flash_all_leds(k)
 
-    def twinkle_leds(self):
+    def twinkle_leds(self, k):
         '''Call the LED Board and request the twinkling of all LEDs'''
-        self.pointer_ledboard.twinkle_all_leds()
+        self.pointer_ledboard.twinkle_all_leds(k)
 
     def exit_action(self):
         '''Call the LED Board to initiate the ”power down” lighting sequence'''
@@ -52,7 +52,7 @@ def main():
     qpad = Keypad()
     ledboard = Led_board()
     kpc = KPC(qpad, ledboard, "txt", "passw")
-    print(kpc.flash_leds(5))
+    kpc.flash_leds(5)
 
 
 

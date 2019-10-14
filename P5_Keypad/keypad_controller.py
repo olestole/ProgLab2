@@ -31,6 +31,16 @@ class KPC:
         """Append digit to password_buffer"""
         self.password_buffer += str(digit)
 
+    def cache_new_password(self):
+        """State change"""
+        print("Write new password again")
+
+    def refresh_agent(self):
+        """Refresh agent"""
+        self.password_buffer = ""
+        self.password_buffer_old = ""
+
+
     def fully_activate_agent(self):
         """Print message"""
         print("Right password, you are now active.")
@@ -68,9 +78,13 @@ class KPC:
             self.current_password = self.password_buffer
             self.twinkle_leds(3)
             print("Your password has been changed")
+            self.password_buffer = ""
+            self.password_buffer_old = ""
         else:
             self.flash_leds(3)
             print("The passwords does not correspond with each other")
+            self.password_buffer = ""
+            self.password_buffer_old = ""
 
     def choose_led(self, digit):
         self.Lid = digit

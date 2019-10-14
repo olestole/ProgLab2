@@ -27,6 +27,7 @@ class FSM:
     def add_rules(self):
         '''Add rule to rule list'''
 
+        '''Password rules'''
         a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry())
         a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit())
         a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password())
@@ -37,9 +38,15 @@ class FSM:
         a21 = Rule('s_read_2', 's_read_2', 'all_digit', self.agent.append_next_password_digit())
         a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password())
         a61 = Rule('s_read_2', 's_active', 'all_symbols', self.agent.refresh_agent())
-        a22 = Rule('s_read_3', 's_read_3', 'all_digit', self.agent.append_next_password_digit())
+        a22 = Rule('s_read_3', 's_read_3', 'all_digit', self.agent.append_next_password_digit_old())
         a8 = Rule('s_read_3', 's_active', '*', self.agent.compare_new_passwords())
         a62 = Rule('s_read_3', 's_active', 'all_symbols', self.agent.refresh_agent())
+
+        '''Light rules'''
+        s1 = Rule('s_active', 's_led', '0-5_digits', self.agent.choose_led())
+        s2 = Rule('s_led', 's_time', '*', self.agent.begin_duration_entry())
+        s3 = Rule('s_time', 's_time', 'all_digit', self.agent.choose_duration())
+        s4 = Rule('s_time', 's_active', '*', self.agent.complete_duration())
 
         self.rule_list.append(a1)
         self.rule_list.append(a2)
@@ -58,13 +65,12 @@ class FSM:
 
     def get_next_signal(self):
         '''Query the agent for the next signal'''
-        self.curr_signal = self.keypad.get_next_signal()
+        self.curr_signal = self.agent.get_next_signal()
 
 
     def run_rules(self):
         '''Go through the rule set, in order, applying each rule until one of the rules is fired'''
         for i in self.rule_list:
-
             if i.state1 == self.curr_state and self.curr_signal in i.legal_signals:
                 self.curr_state = i.state2
                 i.action()
@@ -92,9 +98,11 @@ class Rule:
     def __init__(self, state1, state2, signal, action):
         self.state1 = state1
         if signal == 'all_symbols':
-            self.legal_signals = [1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#']
+            self.legal_signals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '*', '#']
         elif signal == 'all_digits':
-            self.legal_signals = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+            self.legal_signals = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        elif signal == '0-5_digits':
+            self.legal_signals = [0,1,2,3,4,5]
         else:
             self.legal_signals = signal
 

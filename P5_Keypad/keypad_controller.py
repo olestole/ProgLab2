@@ -98,7 +98,7 @@ class KPC:
 
     def complete_duration(self):
         '''Using values stored in the Lid and Ldur slots, call the LED Board and request that LED # Lid be turned on for Ldur seconds'''
-        self.pointer_ledboard.light_one_led(self.Lid, self.Ldur)
+        self.pointer_ledboard.light_one_led(self.Lid, int(self.Ldur))
 
     def flash_leds(self, k):
         '''Call the LED Board and request the flashing of all LEDs'''

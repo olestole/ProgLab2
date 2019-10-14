@@ -40,9 +40,15 @@ class Led_board:
         for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
             self.set_pin(pin_index, pin_state)
 
-    def flash_all_leds(self):
+    def light_one_led(self, led_number, k):
+        t_end = time.time() + k
+        while time.time() < t_end:
+            self.light_led(led_number)
+        self.light_led(0)
+
+    def flash_all_leds(self, k):
         '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
-        t_end = time.time() + 5
+        t_end = time.time() + k
         while time.time() < t_end:
             for i in range(10):
                 self.light_led(0)
@@ -55,9 +61,9 @@ class Led_board:
             time.sleep(0.5)
         self.light_led(0)
 
-    def twinkle_all_leds(self):
+    def twinkle_all_leds(self, k):
         '''Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method'''
-        t_end = time.time() + 5
+        t_end = time.time() + k
         while time.time() < t_end:
             self.light_led(0)
             time.sleep(0.2)

@@ -127,6 +127,7 @@ def main():
     led_board = Led_board()
     kpc = KPC(keypad, led_board, "path", "6969")
     fsm = FSM(kpc, keypad, led_board)
+    fsm.add_rules()
     fsm.main_loop()
 
 

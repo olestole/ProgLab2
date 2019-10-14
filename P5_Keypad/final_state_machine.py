@@ -4,10 +4,7 @@ from keypad_controller import KPC
 from keypad import Keypad
 from led_board import Led_board
 import time
-
-
-
-
+import keypad_controller
 
 class FSM:
 
@@ -27,19 +24,41 @@ class FSM:
         self.rule_list = [] #list of rules
         self.curr_signal = None
 
-    def add_rule(self, rule):
+    def add_rules(self):
         '''Add rule to rule list'''
 
-        a1 = Rule("s_init", "s_read", 'all_symbols', self.agent.flash_leds())
-        a2 = Rule('s_read2', "s_read3", '*', self.agent.flash_leds())
+        a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry())
+        a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit())
+        a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password())
+        a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent())
+        a5 = Rule('s_verify', 's_active', 'Y', self.agent.fully_activate_agent())
+        a6 = Rule('s_verify', 's_init', 'all_symbols', self.agent.reset_agent())
+        a11 = Rule('s_active', 's_read_2', '*', self.agent.init_passcode_entry)
+        a21 = Rule('s_read_2', 's_read_2', 'all_digit', self.agent.append_next_password_digit())
+        a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password())
+        a61 = Rule('s_read_2', 's_active', 'all_symbols', self.agent.refresh_agent())
+        a22 = Rule('s_read_3', 's_read_3', 'all_digit', self.agent.append_next_password_digit())
+        a8 = Rule('s_read_3', 's_active', '*', self.agent.compare_new_passwords())
+        a62 = Rule('s_read_3', 's_active', 'all_symbols', self.agent.refresh_agent())
 
         self.rule_list.append(a1)
+        self.rule_list.append(a2)
+        self.rule_list.append(a3)
+        self.rule_list.append(a4)
+        self.rule_list.append(a5)
+        self.rule_list.append(a6)
+        self.rule_list.append(a11)
+        self.rule_list.append(a21)
+        self.rule_list.append(a7)
+        self.rule_list.append(a61)
+        self.rule_list.append(a22)
+        self.rule_list.append(a8)
+        self.rule_list.append(a62)
 
 
     def get_next_signal(self):
         '''Query the agent for the next signal'''
         self.curr_signal = self.keypad.get_next_signal()
-
 
 
     def run_rules(self):
@@ -49,12 +68,6 @@ class FSM:
             if i.state1 == self.curr_state and self.curr_signal in i.legal_signals:
                 self.curr_state = i.state2
                 i.action()
-
-
-
-
-
-
 
 
     def apply_rule(self):
@@ -89,12 +102,12 @@ class Rule:
         self.action = action
 
 def main():
-    kpc = KPC()
     keypad = Keypad()
     led_board = Led_board()
+    kpc = KPC(keypad, led_board, "path", "6969")
+    fsm = FSM(kpc, keypad, led_board)
+    fsm.main_loop()
 
-    fsm = FSM()
-    fsm.main_loop(kpc, keypad, led_board)
 
 
 if __name__ == "__main__":

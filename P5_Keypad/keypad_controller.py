@@ -46,7 +46,7 @@ class KPC:
         if self.override_signal:
             return self.override_signal
         else:
-            self.pointer_keypad.get_next_signal()
+            return self.pointer_keypad.get_next_signal()
 
     def verify_login(self):
         '''Check that the password just entered via the keypad matches that in the pass- word file.

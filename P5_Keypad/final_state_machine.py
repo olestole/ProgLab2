@@ -98,7 +98,7 @@ class FSM:
         '''Use the consequent of a rule to a) set the next state of the FSM, and b) call the appropriate agent action method'''
         while self.curr_state != 's_done':
             print('i')
-            self.curr_signal = self.agent.get_next_signal()
+            self.get_next_signal()
             self.run_rules()
 
             time.sleep(0.5)

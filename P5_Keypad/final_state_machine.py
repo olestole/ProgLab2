@@ -28,7 +28,9 @@ class FSM:
         '''Add rule to rule list'''
 
         '''Password rules'''
+        print("a1 test")
         a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry())
+        print("a2 test")
         a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit(self.curr_signal))
         a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password())
         a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent())

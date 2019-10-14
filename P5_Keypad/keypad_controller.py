@@ -31,7 +31,7 @@ class KPC:
         """Append digit to password_buffer"""
         self.password_buffer += str(digit)
 
-    def fully_activate(self):
+    def fully_activate_agent(self):
         """Print message"""
         print("Right password, you are now active.")
 

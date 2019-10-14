@@ -1,6 +1,6 @@
 '''Keypad Controller class, with functions'''
-
-import keypad, led_board
+from keypad import Keypad
+from led_board import Led_board
 
 class KPC:
 
@@ -45,6 +45,7 @@ class KPC:
     def exit_action(self):
         '''Call the LED Board to initiate the ”power down” lighting sequence'''
         self.pointer_ledboard.power_down()
+
 
 def main():
     print("START")

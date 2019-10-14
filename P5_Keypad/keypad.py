@@ -86,7 +86,7 @@ class Keypad:
             if row_col:
                 print(row_col)
                 print(SIGNALS[row_col])
-                return SIGNALS(row_col)
+                return SIGNALS[row_col]
 
 
 def main():

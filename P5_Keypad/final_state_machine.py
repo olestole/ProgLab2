@@ -82,6 +82,7 @@ class FSM:
         print("RUN RULES")
         for i in self.rule_list:
             if i.state1.equals(self.curr_state) and i.curr_signal in i.legal_signals:
+                print("FOUND RULE")
                 self.curr_state = i.state2
                 i.action()
 

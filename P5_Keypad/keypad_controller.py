@@ -90,7 +90,7 @@ class KPC:
         self.Lid = digit
 
     def choose_duration(self, digit):
-        self.Ldur += digit
+        self.Ldur += str(digit)
 
     def begin_duration_entry(self):
         """Duration"""

@@ -75,6 +75,7 @@ class FSM:
     def get_next_signal(self):
         '''Query the agent for the next signal'''
         self.curr_signal = self.agent.get_next_signal()
+        print(self.curr_signal)
 
 
     def run_rules(self):

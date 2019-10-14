@@ -48,7 +48,7 @@ class KPC:
         else:
             return self.pointer_keypad.get_next_signal()
 
-    def verify_login(self):
+    def verify_password(self):
         '''Check that the password just entered via the keypad matches that in the pass- word file.
         Store the result (Y or N) in the override-signal. Also, this should call the LED Board to initiate the appropriate
          lighting pattern for login success or failure'''

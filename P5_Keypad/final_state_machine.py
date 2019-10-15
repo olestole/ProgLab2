@@ -50,7 +50,8 @@ class FSM:
         rule_s3 = Rule('s_time', 's_time', 'all_digits', self.agent.choose_duration)  # ta inn input
         rule_s4 = Rule('s_time', 's_active', '*', self.agent.complete_duration)
         rule_s5 = Rule('s_active', 's_logout', '#', self.agent.begin_logout)
-        rule_s6 = Rule('s_logout', 's_done', '#', self.agent.exit_action)
+        rule_s61 = Rule('s_logout', 's_init', '#', self.agent.exit_action)
+        rule_s62 = Rule('s_logout', 's_active', 'all_digits', self.agent.abort_exit)
 
         """Add rules to rule_list"""
         self.rule_list = [rule_a1, rule_a2, rule_a3, rule_a4, rule_a5, rule_a6, rule_a11, rule_a21, rule_a7,

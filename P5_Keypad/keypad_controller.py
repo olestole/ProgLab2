@@ -34,6 +34,11 @@ class KPC:
         print("Begin logout: Press # if you want to logout")
 
     """Password methods"""
+    def reset_password_accumulator(self):
+        """Reset password"""
+        self.password_buffer = ""
+        print("Enter new password: ")
+
     def append_next_password_digit_old(self, digit):
         """Append digit to password buffer old"""
         self.password_buffer_old += str(digit)
@@ -60,7 +65,7 @@ class KPC:
     def reset_agent(self):
         """Print error message"""
         self.password_buffer = ""
-        self.pointer_ledboard.power_up()
+        self.override_signal = None
         print("Wrong password, try again.")
 
     def verify_password(self):

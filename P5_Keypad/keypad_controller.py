@@ -34,6 +34,11 @@ class KPC:
         print("Begin logout: Press # if you want to logout")
 
     """Password methods"""
+    def reset_password_accumulator(self):
+        """Reset password"""
+        self.password_buffer = ""
+        print("Enter new password: ")
+
     def append_next_password_digit_old(self, digit):
         """Append digit to password buffer old"""
         self.password_buffer_old += str(digit)

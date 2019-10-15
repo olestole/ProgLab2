@@ -78,14 +78,6 @@ class FSM:
                 break
 
 
-    def apply_rule(self):
-        """Check whether the conditions of a rule are met"""
-
-    def fire_rule(self):
-        """Use the consequent of a rule to a) set the next state of the FSM,
-         and b) call the appropriate agent action method"""
-
-
     def main_loop(self):
         """Use the consequent of a rule to a) set the next
         state of the FSM, and b) call the appropriate agent action method"""

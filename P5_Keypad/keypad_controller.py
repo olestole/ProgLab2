@@ -97,6 +97,7 @@ class KPC:
     """Ligthing one LED methods"""
     def choose_led(self, digit):
         self.Lid = digit
+        print("Press * to continue")
 
     def choose_duration(self, digit):
         self.Ldur += str(digit)

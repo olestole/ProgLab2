@@ -35,7 +35,7 @@ class FSM:
         a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password)
         a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent)
         a5 = Rule('s_verify', 's_active', 'Y', self.agent.fully_activate_agent)
-        a6 = Rule('s_verify', 's_init', 'all_symbols', self.agent.reset_agent)
+        a6 = Rule('s_verify', 's_init', 'N', self.agent.reset_agent)
         a11 = Rule('s_active', 's_read_2', '*', self.agent.init_passcode_entry)
         a21 = Rule('s_read_2', 's_read_2', 'all_digits', self.agent.append_next_password_digit) #ta inn input
         a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password)

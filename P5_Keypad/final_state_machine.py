@@ -56,7 +56,7 @@ class FSM:
         """Add rules to rule_list"""
         self.rule_list = [rule_a1, rule_a2, rule_a3, rule_a4, rule_a5, rule_a6, rule_a11, rule_a21, rule_a7,
                                rule_a61, rule_a22, rule_a8, rule_a62, rule_s1, rule_s2, rule_s3, rule_s4, rule_s5,
-                               rule_s6]
+                               rule_s61, rule_s62]
 
         """Add to need input list"""
         self.rules_need_input = [rule_a2, rule_a21, rule_a22, rule_s1, rule_s3]

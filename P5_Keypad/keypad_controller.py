@@ -23,6 +23,14 @@ class KPC:
         self.pointer_ledboard.power_up()
         print("POWER UP")
 
+    def get_next_signal(self):
+        '''Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key'''
+        if self.override_signal:
+            return self.override_signal
+        else:
+            return self.pointer_keypad.get_next_signal()
+
+    """Password methods"""
     def append_next_password_digit_old(self, digit):
         """Append digit to password buffer old"""
         self.password_buffer_old += str(digit)
@@ -50,13 +58,6 @@ class KPC:
         self.password_buffer = ""
         self.pointer_ledboard.power_up()
         print("Wrong password, try again.")
-
-    def get_next_signal(self):
-        '''Return the override-signal, if it is non-blank; otherwise query the keypad for the next pressed key'''
-        if self.override_signal:
-            return self.override_signal
-        else:
-            return self.pointer_keypad.get_next_signal()
 
     def verify_password(self):
         '''Check that the password just entered via the keypad matches that in the pass- word file.
@@ -86,6 +87,7 @@ class KPC:
             self.password_buffer = ""
             self.password_buffer_old = ""
 
+    """Ligthing one LED methods"""
     def choose_led(self, digit):
         self.Lid = digit
 
@@ -100,6 +102,7 @@ class KPC:
         '''Using values stored in the Lid and Ldur slots, call the LED Board and request that LED # Lid be turned on for Ldur seconds'''
         self.pointer_ledboard.light_one_led(self.Lid, int(self.Ldur))
 
+    """LED methods"""
     def flash_leds(self, k):
         '''Call the LED Board and request the flashing of all LEDs'''
         self.pointer_ledboard.flash_all_leds(k)

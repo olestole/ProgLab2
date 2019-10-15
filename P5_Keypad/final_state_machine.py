@@ -133,7 +133,7 @@ class Rule:
         elif signal == '0-5_digits':
             self.legal_signals = [0,1,2,3,4,5]
         else:
-            self.legal_signals = signal
+            self.legal_signals = [signal]
         self.state2 = state2
         self.action = action
 

@@ -103,6 +103,7 @@ class FSM:
                     i.action(self.curr_signal)
                 else:
                     i.action()
+                break
 
 
     def apply_rule(self):

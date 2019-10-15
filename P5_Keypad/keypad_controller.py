@@ -65,7 +65,7 @@ class KPC:
     def reset_agent(self):
         """Print error message"""
         self.password_buffer = ""
-        self.pointer_ledboard.power_up()
+        self.override_signal = None
         print("Wrong password, try again.")
 
     def verify_password(self):

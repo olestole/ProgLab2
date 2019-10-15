@@ -66,13 +66,16 @@ class KPC:
         '''Check that the password just entered via the keypad matches that in the pass- word file.
         Store the result (Y or N) in the override-signal. Also, this should call the LED Board to initiate the appropriate
          lighting pattern for login success or failure'''
+        print("Checking password...")
         if self.password_buffer == self.current_password:
             self.twinkle_leds(3)
             self.override_signal = "Y"
+            print("Login accepted")
         else:
             self.password_buffer = ""
             self.flash_leds(3)
             self.override_signal = "N"
+            print("Wrong password")
 
     def compare_new_passwords(self):
         '''Check that the new password is legal. If so, write the new pass- word in the password file.

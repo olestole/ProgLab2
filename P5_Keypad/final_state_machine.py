@@ -19,38 +19,38 @@ class FSM:
 
         self.led_board = l_board
         self.led_board.setup()
-        
+
         self.curr_state = "s_init"
         self.rule_list = [] #list of rules
         self.curr_signal = None
+
+        self.rules_need_input = []
 
     def add_rules(self):
         '''Add rule to rule list'''
 
         '''Password rules'''
-        print("a1 test")
-        a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry())
-        print("a2 test")
-        a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit(self.curr_signal))
-        a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password())
-        a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent())
-        a5 = Rule('s_verify', 's_active', 'Y', self.agent.fully_activate_agent())
-        a6 = Rule('s_verify', 's_init', 'all_symbols', self.agent.reset_agent())
+        a1 = Rule('s_init', 's_read', 'all_symbols', self.agent.init_passcode_entry)
+        a2 = Rule('s_read', 's_read', 'all_digits', self.agent.append_next_password_digit) #ta inn input
+        a3 = Rule('s_read', 's_verify', '*', self.agent.verify_password)
+        a4 = Rule('s_read', 's_init', 'all_symbols', self.agent.reset_agent)
+        a5 = Rule('s_verify', 's_active', 'Y', self.agent.fully_activate_agent)
+        a6 = Rule('s_verify', 's_init', 'all_symbols', self.agent.reset_agent)
         a11 = Rule('s_active', 's_read_2', '*', self.agent.init_passcode_entry)
-        a21 = Rule('s_read_2', 's_read_2', 'all_digits', self.agent.append_next_password_digit(self.curr_signal))
-        a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password())
-        a61 = Rule('s_read_2', 's_active', 'all_symbols', self.agent.refresh_agent())
-        a22 = Rule('s_read_3', 's_read_3', 'all_digits', self.agent.append_next_password_digit_old(self.curr_signal))
-        a8 = Rule('s_read_3', 's_active', '*', self.agent.compare_new_passwords())
-        a62 = Rule('s_read_3', 's_active', 'all_symbols', self.agent.refresh_agent())
+        a21 = Rule('s_read_2', 's_read_2', 'all_digits', self.agent.append_next_password_digit) #ta inn input
+        a7 = Rule('s_read_2', 's_read_3', '*', self.agent.cache_new_password)
+        a61 = Rule('s_read_2', 's_active', 'all_symbols', self.agent.refresh_agent)
+        a22 = Rule('s_read_3', 's_read_3', 'all_digits', self.agent.append_next_password_digit_old)#ta inn input
+        a8 = Rule('s_read_3', 's_active', '*', self.agent.compare_new_passwords)
+        a62 = Rule('s_read_3', 's_active', 'all_symbols', self.agent.refresh_agent)
 
         '''Light rules'''
-        s1 = Rule('s_active', 's_led', '0-5_digits', self.agent.choose_led(self.curr_signal))
-        s2 = Rule('s_led', 's_time', '*', self.agent.begin_duration_entry())
-        s3 = Rule('s_time', 's_time', 'all_digits', self.agent.choose_duration(self.curr_signal))
-        s4 = Rule('s_time', 's_active', '*', self.agent.complete_duration())
-        s5 = Rule('s_active', 's_logout', '#', self.agent.begin_logout())
-        s6 = Rule('s_logout', 's_done', '#', self.agent.exit_action())
+        s1 = Rule('s_active', 's_led', '0-5_digits', self.agent.choose_led)#ta inn input
+        s2 = Rule('s_led', 's_time', '*', self.agent.begin_duration_entry)
+        s3 = Rule('s_time', 's_time', 'all_digits', self.agent.choose_duration)#ta inn input
+        s4 = Rule('s_time', 's_active', '*', self.agent.complete_duration)
+        s5 = Rule('s_active', 's_logout', '#', self.agent.begin_logout)
+        s6 = Rule('s_logout', 's_done', '#', self.agent.exit_action)
 
         # Forslag til å endre 189418 append kall
         # self.rule_list.append([a1, a2, a3, a4, a5, a6, a11, a21, a7, a61, a22, a8, a62, s1, s2, s3, s4, s5, s6])
@@ -76,6 +76,14 @@ class FSM:
         self.rule_list.append(s5)
         self.rule_list.append(s6)
 
+        '''Add to need input list'''
+        self.rules_need_input.append(a2)
+        self.rules_need_input.append(a21)
+        self.rules_need_input.append(a22)
+        self.rules_need_input.append(s1)
+        self.rules_need_input.append(s3)
+
+
     def get_next_signal(self):
         '''Query the agent for the next signal'''
         self.curr_signal = self.agent.get_next_signal()
@@ -90,7 +98,10 @@ class FSM:
             if i.state1.equals(self.curr_state) and self.curr_signal in i.legal_signals:
                 print("FOUND RULE")
                 self.curr_state = i.state2
-                i.action()
+                if i in self.rules_need_input:
+                    i.action(self.curr_signal)
+                else:
+                    i.action()
 
 
     def apply_rule(self):

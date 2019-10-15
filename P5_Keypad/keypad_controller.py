@@ -132,6 +132,10 @@ class KPC:
         self.pointer_ledboard.power_down()
         print("Exiting")
 
+    def abort_exit(self):
+        """Abort exit"""
+        print("Abort logout")
+
     def save_password(self, password):
         file = open("password.txt", "w")
         file.write(password)

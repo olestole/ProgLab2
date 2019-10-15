@@ -83,7 +83,7 @@ class Led_board:
         '''Led flash when turning on system'''
         t_end = time.time() + 3
         while time.time() < t_end:
-            self.light_led(4)
+            self.light_led(5)
         self.light_led(6)
 
 
@@ -91,7 +91,7 @@ class Led_board:
         '''Led flash when turning off system'''
         t_end = time.time() + 3
         while time.time() < t_end:
-            self.light_led(5)
+            self.light_led(4)
         self.light_led(6)
 
 

@@ -7,12 +7,10 @@ class KPC:
     def __init__(self, p_keypad, p_ledboard):
         self.pointer_keypad = p_keypad
         self.pointer_ledboard = p_ledboard
-        """a few simple strings or arrays for holding important sequences of keystrokes, such as a passcode-buffer for all numbers in an ongoing password-entry attempt"""
         self.password_buffer_old = ""
         self.password_buffer = ""
         self.current_password = self.load_password()
         self.override_signal = None
-        """slotsforholdingtheLEDid(Lid)andlightingduration(Ldur)–bothenteredviathekeypad – so that it can initiate the action of turning a specific LED on for a specific length of time"""
         self.lid = 0
         self.ldur = ""
 

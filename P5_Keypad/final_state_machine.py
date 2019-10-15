@@ -115,6 +115,8 @@ class FSM:
             self.get_next_signal()
             self.run_rules()
 
+            print("curr_state:", self.curr_state)
+
             time.sleep(0.5)
 
 

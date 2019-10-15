@@ -4,13 +4,13 @@
 class KPC:
     """Class for keypad_controller"""
 
-    def __init__(self, p_keypad, p_ledboard, password):
+    def __init__(self, p_keypad, p_ledboard):
         self.pointer_keypad = p_keypad
         self.pointer_ledboard = p_ledboard
         """a few simple strings or arrays for holding important sequences of keystrokes, such as a passcode-buffer for all numbers in an ongoing password-entry attempt"""
         self.password_buffer_old = ""
         self.password_buffer = ""
-        self.current_password = password
+        self.current_password = self.load_password()
         self.override_signal = None
         """slotsforholdingtheLEDid(Lid)andlightingduration(Ldur)–bothenteredviathekeypad – so that it can initiate the action of turning a specific LED on for a specific length of time"""
         self.lid = 0
@@ -81,12 +81,18 @@ class KPC:
             print("Wrong password")
 
     def compare_new_passwords(self):
+
         """Check that the new password is legal. If so, write the new pass- word in the password file.
         A legal password should be at least 4 digits long and should contain no symbols other than the digits 0-9.
         As in verify login, this should use the LED Board to signal success or failure in changing the password"""
         if len(self.password_buffer) >= 4 and (self.password_buffer.isdigit()) and (self.password_buffer == self.password_buffer_old):
-            self.current_password = self.password_buffer
+
+            self.save_password(self.password_buffer)
+            self.current_password = self.load_password()
+
+            # self.current_password = self.password_buffer
             self.twinkle_leds(3)
+
             print("Your password has been changed")
             self.password_buffer = ""
             self.password_buffer_old = ""
@@ -125,3 +131,14 @@ class KPC:
         """Call the LED Board to initiate the ”power down” lighting sequence"""
         self.pointer_ledboard.power_down()
         print("Exiting")
+
+    def save_password(self, password):
+        file = open("password.txt", "w")
+        file.write(password)
+        file.close()
+
+    def load_password(self):
+        file = open("password.txt", "r")
+        password = file.read().strip()
+        file.close()
+        return password

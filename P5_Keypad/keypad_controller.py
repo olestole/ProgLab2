@@ -54,6 +54,7 @@ class KPC:
 
     def fully_activate_agent(self):
         """Print message"""
+        self.override_signal = None
         print("Right password, you are now active.")
 
     def reset_agent(self):

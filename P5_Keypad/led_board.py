@@ -1,13 +1,8 @@
 '''Led Board class, with functions'''
 
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
 
-"""
-        GPIO.setup(13, GPIO.IN)  = pin0
-        GPIO.setup(20, GPIO.OUT) = pin1
-        GPIO.setup(21, GPIO.OUT) = pin2
-"""
 
 class Led_board:
 
@@ -24,7 +19,7 @@ class Led_board:
     ]
 
     def setup(self):
-        '''Set the proper mode via: GPIO.setmode(GPIO.BCM)'''
+        """Set the proper mode via: GPIO.setmode(GPIO.BCM)"""
         GPIO.setmode(GPIO.BCM)
 
     def set_pin(self, pin_index, pin_state):
@@ -35,8 +30,8 @@ class Led_board:
             GPIO.output(self.pins[pin_index], pin_state)
 
     def light_led(self, led_number):
-        '''Turn on one of the 6 LEDs by making the appropriate combination of input and output declarations,
-         and then making the appropriate HIGH / LOW settings on the output pins'''
+        """Turn on one of the 6 LEDs by making the appropriate combination of input and output declarations,
+         and then making the appropriate HIGH / LOW settings on the output pins"""
         for pin_index, pin_state in enumerate(self.pin_led_states[led_number]):
             self.set_pin(pin_index, pin_state)
 
@@ -47,7 +42,7 @@ class Led_board:
         self.light_led(6)
 
     def flash_all_leds(self, k):
-        '''Flash all 6 LEDs on and off for k seconds, where k is an argument of the method'''
+        """Flash all 6 LEDs on and off for k seconds, where k is an argument of the method"""
         t_end = time.time() + k
         while time.time() < t_end:
             for i in range(300):
@@ -62,7 +57,7 @@ class Led_board:
         self.light_led(6)
 
     def twinkle_all_leds(self, k):
-        '''Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method'''
+        """Turn all LEDs on and off in sequence for k seconds, where k is an argument of the method"""
         t_end = time.time() + k
         while time.time() < t_end:
             self.light_led(0)
@@ -80,32 +75,15 @@ class Led_board:
         self.light_led(6)
 
     def power_up(self):
-        '''Led flash when turning on system'''
+        """Led flash when turning on system"""
         t_end = time.time() + 3
         while time.time() < t_end:
             self.light_led(5)
         self.light_led(6)
 
-
     def power_down(self):
-        '''Led flash when turning off system'''
+        """Led flash when turning off system"""
         t_end = time.time() + 3
         while time.time() < t_end:
             self.light_led(4)
         self.light_led(6)
-
-
-
-def main():
-    print("START")
-    board = Led_board()
-    board.setup()
-    board.flash_all_leds(10)
-
-
-if __name__ == '__main__':
-    main()
-
-
-
-

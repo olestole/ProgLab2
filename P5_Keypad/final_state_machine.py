@@ -115,7 +115,7 @@ def main():
     print("START")
     keypad = Keypad()
     led_board = Led_board()
-    kpc = KPC(keypad, led_board, "6969")
+    kpc = KPC(keypad, led_board)
     fsm = FSM(kpc, keypad, led_board)
     fsm.add_rules()
     fsm.main_loop()

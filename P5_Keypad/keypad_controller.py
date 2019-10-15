@@ -30,6 +30,9 @@ class KPC:
         else:
             return self.pointer_keypad.get_next_signal()
 
+    def begin_logout(self):
+        print("Begin logout: Press # if you want to logout")
+
     """Password methods"""
     def append_next_password_digit_old(self, digit):
         """Append digit to password buffer old"""

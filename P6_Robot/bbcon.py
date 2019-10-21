@@ -42,9 +42,13 @@ class BBCON:
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs
+    
+    def __main__():
+        """ main """
+        print("Main")
+        dancer()
 
-
-
+"""
 def main():
     bbcon = BBCON()
     print("MAIN")
@@ -53,3 +57,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    """

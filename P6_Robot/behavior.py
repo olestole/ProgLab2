@@ -23,8 +23,8 @@ class Behavior:
             motor_recommendations,
             priority,
             match_degree,
-            halt_request=False,
-            active_flag=False):
+            active_flag=False,
+            halt_request=False):
         self.bbcon = bbcon  # pointer to the controller that uses this behavior.,
         # a list of all sensobs that this behavior uses.
         self.sensobs = sensobs
@@ -45,12 +45,21 @@ class Behavior:
 
     def consider_deactivation(self):
         """ whenever a behavior is active, it should test whether it should deactivate."""
+        if self.active_flag:
+            print("considers deactivation")
 
     def consider_activation(self):
         """whenever a behavior is inactive, it should test whether it should activate."""
+        if not self.active_flag:
+            print("considers activation")
 
     def update(self):
-        """the main interface between the bbcon and the behavior"""
+        """the main interface between the bbcon and the behavior
+        TODO: implement test s for becoming active or inactive"""
+        self.sense_and_act()
+
+
+
 
     def sense_and_act(self):
         """the core computations performed by the behavior that use sensob readings

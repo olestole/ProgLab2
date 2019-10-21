@@ -14,7 +14,6 @@ class Camera():
 
     def update(self):
         self.sensor_get_value()
-        return self.value
 
     def reset(self):
         self.value = None

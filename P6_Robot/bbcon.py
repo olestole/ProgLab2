@@ -40,7 +40,7 @@ class BBCON:
         """constitutes the core BBCON activity"""
         #TODO: Update all sensobs
         #TODO: Update all behaviors
-        arbitrator.choose_action(self.active_behaviors)
+        self.arbitrator.choose_action(self.active_behaviors)
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs

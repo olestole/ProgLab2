@@ -22,12 +22,8 @@ class BBCON:
         """ init """
         self.arbitrator = Arbitrator(self)
 
-        #TODO: move to behavior?
-        ultra = Ultrasonic()
-        sensob = Sensob(ultra)
-        sensob.update()
-        value = sensob.get_value()
-        print("Ultrasensor value: ", value)
+        #TODO: add more sensobs
+        self.add_sensob(Sensob(Ultrasonic()))
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -47,9 +43,12 @@ class BBCON:
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
-        #TODO: Update all sensobs
+        for sensob in self.sensobs:
+            sensob.update()
+            print("Ultrasensor value: ", sensob.get_value())
+        
         #TODO: Update all behaviors
-        self.arbitrator.choose_action(self.active_behaviors)
+        #self.arbitrator.choose_action(self.active_behaviors)
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs
@@ -58,8 +57,8 @@ class BBCON:
 def main():
     bbcon = BBCON()
     print("MAIN")
-    #dancer()
-
+    while True:
+        bbcon.run_one_timestep()
 
 if __name__ == "__main__":
     main()

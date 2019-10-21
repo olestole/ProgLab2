@@ -18,7 +18,6 @@ class BBCON:
     def __init__(self):
         """ init """
         self.arbitrator = Arbitrator(self)
-        self.run()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -44,13 +43,8 @@ class BBCON:
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs
-    
-    def run():
-        """ main """
-        print("Main")
-        dancer()
+        
 
-"""
 def main():
     bbcon = BBCON()
     print("MAIN")
@@ -59,4 +53,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    """

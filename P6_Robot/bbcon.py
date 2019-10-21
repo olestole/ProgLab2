@@ -50,14 +50,13 @@ class BBCON:
         #prod_count = 1
         for sensob in self.sensobs:
             sensob.update()
-            print("Camera value: ", sensob.get_value())
-            #if prod_count == 1:
-            #    print("Ultrasensor value: ", sensob.get_value())
-            #if prod_count == 2:
-            #    print("Reflect sensor value: ", sensob.get_value())
-            #if prod_count == 3:
-            #    print("Camera value: ", sensob.get_value())
-            #prod_count += 1
+            if prod_count == 1:
+                print("Ultrasensor value: ", sensob.get_value())
+            if prod_count == 2:
+                print("Reflect sensor value: ", sensob.get_value())
+            if prod_count == 3:
+                print("Camera value: ", sensob.get_value())
+            prod_count += 1
         
         #TODO: Update all behaviors
         #self.arbitrator.choose_action(self.active_behaviors)

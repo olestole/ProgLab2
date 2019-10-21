@@ -2,18 +2,23 @@
 
 import time
 from arbitrator import Arbitrator
+from R6_Robot.Help_Classes.motors import Motors
+from P6_Robot.Help_Classes.robodemo import dancer
+
 
 class BBCON:
 
     behaviors = []
     active_behaviors = []
     sensobs = []
-    motobs = []
+    motobs = None
     arbitrator = None
 
 
     def __init__(self, arbitrator):
         self.arbitrator = Arbitrator(self)
+        self.motobs = Motors()
+        self.motobs.forward()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""

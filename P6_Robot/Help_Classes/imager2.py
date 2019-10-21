@@ -1,6 +1,6 @@
-from PIL import Image
-from PIL import ImageFilter
-from PIL import ImageEnhance
+from Pillow import Image
+from Pillow import ImageFilter
+from Pillow import ImageEnhance
 
 
 class Imager():

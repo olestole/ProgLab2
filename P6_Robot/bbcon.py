@@ -16,7 +16,9 @@ class BBCON:
 
 
     def __init__(self):
+        """ init """
         self.arbitrator = Arbitrator(self)
+        self.__main__()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""

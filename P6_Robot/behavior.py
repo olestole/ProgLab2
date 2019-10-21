@@ -17,3 +17,4 @@ Class Behavior:
         self.match_degree = match_degree # a real number in the range [0, 1] indicating the degree to which current conditions warrant the performance of this behavior.
         self.weigth = priority*match_degree #arbitrator uses as the basis for selecting the winning behavior for a timestep.
 
+

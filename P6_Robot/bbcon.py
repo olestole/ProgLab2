@@ -21,6 +21,8 @@ class BBCON:
     def __init__(self):
         """ init """
         self.arbitrator = Arbitrator(self)
+
+        #TODO: move to behavior?
         ultra = Ultrasonic()
         sensob = Sensob(ultra)
         sensob.update()
@@ -56,7 +58,7 @@ class BBCON:
 def main():
     bbcon = BBCON()
     print("MAIN")
-    dancer()
+    #dancer()
 
 
 if __name__ == "__main__":

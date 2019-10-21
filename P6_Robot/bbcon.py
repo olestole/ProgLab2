@@ -27,7 +27,7 @@ class BBCON:
         sensob = Sensob(ultra)
         sensob.update()
         value = sensob.get_value()
-        print("Value: ", value)
+        print("Ultrasensor value: ", value)
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""

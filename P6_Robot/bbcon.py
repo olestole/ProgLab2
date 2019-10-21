@@ -22,7 +22,7 @@ class BBCON:
 
     def __init__(self):
         """ init """
-        self.arbitrator = Arbitrator(self)
+        #self.arbitrator = Arbitrator(self)
 
         #TODO: add more sensobs
         #self.add_sensob(Sensob(Ultrasonic()))

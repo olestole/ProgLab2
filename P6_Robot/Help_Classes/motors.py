@@ -9,6 +9,7 @@ class Motors():
         self.setup()
 
     def setup(self):
+        print("setup Motors")
         self.max = 1024
         self.high = 500
         self.normal = 300

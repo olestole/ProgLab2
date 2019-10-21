@@ -68,7 +68,7 @@ class BBCON:
 def main():
     bbcon = BBCON()
     print("MAIN")
-    #ZumoButton().wait_for_press()
+    ZumoButton().wait_for_press()
     while True:
         bbcon.run_one_timestep()
 

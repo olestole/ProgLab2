@@ -18,7 +18,7 @@ class BBCON:
     def __init__(self):
         """ init """
         self.arbitrator = Arbitrator(self)
-        self.__main__()
+        self.run()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -45,7 +45,7 @@ class BBCON:
         time.sleep(0.5)
         #TODO: Reset the sensobs
     
-    def __main__():
+    def run():
         """ main """
         print("Main")
         dancer()

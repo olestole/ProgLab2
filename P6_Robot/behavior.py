@@ -5,7 +5,7 @@ One important condition for receiving a passing mark on this project is that you
  yet extremely important, principle.
 """
 
-Class Behavior:
+class Behavior:
 
     def __init__(self, bbcon, sensobs, motor_recommendations, priority, match_degree,halt_request=False, active_flag=False):
         self.bbcon = bbcon #pointer to the controller that uses this behavior.,

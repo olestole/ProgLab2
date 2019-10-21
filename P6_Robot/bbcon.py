@@ -2,7 +2,7 @@
 
 import time
 from arbitrator import Arbitrator
-from R6_Robot.Help_Classes.motors import Motors
+from P6_Robot.Help_Classes.motors import Motors
 from P6_Robot.Help_Classes.robodemo import dancer
 
 
@@ -43,7 +43,7 @@ class BBCON:
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs
-        
+
 
 def main():
     bbcon = BBCON()

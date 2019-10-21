@@ -17,4 +17,4 @@ class Sensob:
         
 c = Camera()
 i = Imager()
-print(c)
+print(i)

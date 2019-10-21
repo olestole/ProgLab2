@@ -1,9 +1,13 @@
 """The highest-level class, BBCON (Behavior-Based Controller)"""
 
 import time
+
 from arbitrator import Arbitrator
+from sensob import Sensob
+
 from Help_Classes.motors import Motors
 from Help_Classes.robodemo import dancer
+from Help_Classes.ultrasonic import Ultrasonic
 
 
 class BBCON:
@@ -18,6 +22,11 @@ class BBCON:
     def __init__(self):
         """ init """
         self.arbitrator = Arbitrator(self)
+        ultra = Ultrasonic()
+        sensob = Sensob(ultra)
+        sensob.update()
+        value = sensob.get_value()
+        print("Value: ", value)
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""

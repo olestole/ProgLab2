@@ -25,8 +25,8 @@ class BBCON:
         #self.arbitrator = Arbitrator(self)
 
         #TODO: add more sensobs
-        #self.add_sensob(Sensob(Ultrasonic()))
-        #self.add_sensob(Sensob(ReflectanceSensors()))
+        self.add_sensob(Sensob(Ultrasonic()))
+        self.add_sensob(Sensob(ReflectanceSensors()))
         self.add_sensob(Sensob(Camera()))
 
     def add_behavior(self, behavior):
@@ -47,17 +47,16 @@ class BBCON:
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
-        #prod_count = 1
+        prod_count = 1
         for sensob in self.sensobs:
             sensob.update()
-            print("Camera value: ", sensob.get_value())
-            #if prod_count == 1:
-            #    print("Ultrasensor value: ", sensob.get_value())
-            #if prod_count == 2:
-            #    print("Reflect sensor value: ", sensob.get_value())
-            #if prod_count == 3:
-            #    print("Camera value: ", sensob.get_value())
-            #prod_count += 1
+            if prod_count == 1:
+                print("Ultrasensor value: ", sensob.get_value())
+            if prod_count == 2:
+                print("Reflect sensor value: ", sensob.get_value())
+            if prod_count == 3:
+                print("Camera value: ", sensob.get_value())
+            prod_count += 1
         
         #TODO: Update all behaviors
         #self.arbitrator.choose_action(self.active_behaviors)
@@ -69,7 +68,7 @@ class BBCON:
 def main():
     bbcon = BBCON()
     print("MAIN")
-    #ZumoButton().wait_for_press()
+    ZumoButton().wait_for_press()
     while True:
         bbcon.run_one_timestep()
 

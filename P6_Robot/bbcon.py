@@ -2,8 +2,8 @@
 
 import time
 from arbitrator import Arbitrator
-from P6_Robot.Help_Classes.motors import Motors
-from P6_Robot.Help_Classes.robodemo import dancer
+from Help_Classes.motors import Motors
+from Help_Classes.robodemo import dancer
 
 
 class BBCON:

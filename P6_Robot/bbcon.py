@@ -15,10 +15,8 @@ class BBCON:
     arbitrator = None
 
 
-    def __init__(self, arbitrator):
+    def __init__(self):
         self.arbitrator = Arbitrator(self)
-        self.motobs = Motors()
-        self.motobs.forward()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -44,3 +42,14 @@ class BBCON:
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)
         #TODO: Reset the sensobs
+
+
+
+def main():
+    bbcon = BBCON()
+    print("MAIN")
+    dancer()
+
+
+if __name__ == "__main__":
+    main()

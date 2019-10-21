@@ -47,7 +47,7 @@ class BBCON:
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
-        #prod_count = 1
+        prod_count = 1
         for sensob in self.sensobs:
             sensob.update()
             if prod_count == 1:

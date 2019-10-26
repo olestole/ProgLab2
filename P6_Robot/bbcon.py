@@ -13,16 +13,14 @@ from Help_Classes.zumo_button import ZumoButton
 
 class BBCON:
 
-    behaviors = []
-    active_behaviors = []
-    sensobs = []
-    motobs = None
-    arbitrator = None
-
 
     def __init__(self):
         """ init """
-        #self.arbitrator = Arbitrator(self)
+        self.behaviors = []
+        self.active_behaviors = []
+        self.sensobs = []
+        self.motobs = None
+        self.arbitrator = Arbitrator(self.active_behaviors)
 
         #TODO: add more sensobs
         self.add_sensob(Sensob(Ultrasonic()))
@@ -39,16 +37,16 @@ class BBCON:
 
     def activate_behavior(self, behavior):
         """add an existing behavior onto the active-behaviors list"""
-        self.activate_behavior.append(behavior)
+        self.active_behaviors.append(behavior)
 
     def deactive_behavior(self, behavior):
         """remove an existing behavior from the active behaviors list"""
-        self.activate_behavior.remove(behavior)
+        self.active_behaviors.remove(behavior)
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
         prod_count = 1
-        for sensob in self.sensobs:
+        for sensob in self.sensobs:  #Updates all sensobs
             sensob.update()
             if prod_count == 1:
                 print("Ultrasensor value: ", sensob.get_value())
@@ -57,8 +55,10 @@ class BBCON:
             if prod_count == 3:
                 print("Camera value: ", sensob.get_value())
             prod_count += 1
-        
-        #TODO: Update all behaviors
+
+        for behavior in self.behaviors: #Update all behaviors
+            behavior.update()
+
         #self.arbitrator.choose_action(self.active_behaviors)
         #TODO: Update the motobs based on these motor recommendations
         time.sleep(0.5)

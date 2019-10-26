@@ -1,7 +1,6 @@
 """The highest-level class, BBCON (Behavior-Based Controller)"""
 
 import time
-import numpy
 
 from arbitrator import Arbitrator
 from sensob import Sensob

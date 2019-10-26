@@ -1,7 +1,6 @@
 """The motor object (motob) manifests an interface between a behavior and one or more motors"""
 
 from Help_Classes.motors import Motors
-from Help_Classes.robodemo import dancer
 
 
 class Motob:

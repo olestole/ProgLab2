@@ -81,7 +81,7 @@ def main():
 
     #setup()
     m = Motors()
-    m.forward(.5, 3)
+    m.backward()
 
     """bbcon = BBCON()
     print("MAIN")

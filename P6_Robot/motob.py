@@ -19,8 +19,6 @@ class Motob:
         """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor(s)"""
         print("motob value: ", self.value)
         if(self.value == "drive"):
-            self.motor.dancer()
-            print("done danc")
             self.motor.forward(.2,3)
             print("between forw")
             self.motor.forward(0.25, 0.5)

@@ -8,6 +8,8 @@ project is that your group’s code obey’s this simple,
  yet extremely important, principle.
 """
 
+from Help_Classes.imager2 import Imager
+
 
 class Behavior:
     """ a modular unit designed to analyze a subset
@@ -60,7 +62,7 @@ class Behavior:
                 elif sensor_count == 2:
                     if 170 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(170)
-                        image = sensor.get_value()
+                        image = Imager(False, sensor.get_value())
                         if image.get_pixel(20, 30)[color] < self.sensor_limits[sensor_count][color]:
                             print("color no good, ", color)
                             all_active_values = False
@@ -87,7 +89,7 @@ class Behavior:
                 elif sensor_count == 2:
                     if 170 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(170)
-                        image = sensor.get_value()
+                        image = Imager(False, sensor.get_value())
                         if image.get_pixel(20, 30)[color] < self.sensor_limits[sensor_count][color]:
                             all_active_values = False
                             break

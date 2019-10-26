@@ -5,6 +5,7 @@ import time
 from arbitrator import Arbitrator
 from sensob import Sensob
 from behavior import Behavior
+from motob import Motob
 
 from Help_Classes.camera import Camera
 from Help_Classes.motors import Motors
@@ -67,10 +68,12 @@ def setup():
     us = Sensob(Ultrasonic())
     rs = Sensob(ReflectanceSensors())
     cam = Sensob(Camera())
+    stop_motor = Motob()
+
     bbcon = BBCON()
 
 
-    stop = Behavior(bbcon, us, )  # Ultralyd
+    stop = Behavior(bbcon, us, 30, "stop")  # Ultralyd
 
 
 def main():

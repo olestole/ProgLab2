@@ -1,9 +1,12 @@
 """The motor object (motob) manifests an interface between a behavior and one or more motors"""
 
+from Help_Classes.motors import Motors
+
 class Motob:
 
     def __init__(self, value):
-        self.motors = [] #list of the motors whose settings will be determined by the motob
+        self.motor = Motors()
+        self.motors =  [] #list of the motors whose settings will be determined by the motob
         self.value = value #a holder of the most recent motor recommendation sent to the motob
 
     def update(self, motor_recommendations):

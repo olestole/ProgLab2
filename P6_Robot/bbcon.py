@@ -78,12 +78,14 @@ def setup():
 def main():
 
     #setup()
+    m = Motors()
+    m.forward(.5, 3)
 
-    bbcon = BBCON()
+    """bbcon = BBCON()
     print("MAIN")
     ZumoButton().wait_for_press()
     while True:
-        bbcon.run_one_timestep()
+        bbcon.run_one_timestep()"""
 
 if __name__ == "__main__":
     main()

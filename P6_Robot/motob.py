@@ -17,10 +17,7 @@ class Motob:
     def operationalize(self):
         """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor(s)"""
         print("motob value: ", self.value)
-        m = self.motor
         if(self.value == "drive"):
-            m.forward(.2,3)
-            print("between forw")
-            m.forward(0.25, 0.5)
+            self.motor.forward(.2,3)
         elif(self.value == "stop"):
-            m.stop()
+            self.motor.stop()

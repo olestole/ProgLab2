@@ -54,7 +54,7 @@ class BBCON:
             sensob.update()
 
         for behavior in self.behaviors: #Update all behaviors
-            behavior.update(self.sensob)
+            behavior.update(self.sensobs)
 
         fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
 
@@ -81,7 +81,7 @@ def main():
 
     bbcon = BBCON()
     print("MAIN")
-    ZumoButton().wait_for_press()
+    #ZumoButton().wait_for_press()
     while True:
         bbcon.run_one_timestep()
 

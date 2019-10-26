@@ -59,8 +59,7 @@ class BBCON:
                 print("Underlag", sensob.get_value())
             if(prod_count == 2):
                 image = Imager(False, sensob.get_value())
-                print("Camera blaa", image.get_pixel(20, 30))
-                print("Camera vit", list(image.getdata()))
+                print("Camera pixel", image.get_pixel(20, 30))
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors

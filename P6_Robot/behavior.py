@@ -48,25 +48,28 @@ class Behavior:
         if self.active_flag:
             sensor_count = 0
             for sensor in self.sensobs:
-                if sensor.get_value() > self.sensor_limits[0]:
-                    self.active_flag = False
-                    self.bbcon.deactivate_behavior(self)
+                all_active_values = True
+                if sensor.get_value() > self.sensor_limits[sensor_count]:
+                    all_active_values = False
                     break
                 sensor_count += 1
+            if not all_active_values:
+                self.active_flag = False
+                self.bbcon.deactivate_behavior(self)
 
     def consider_activation(self):
         """whenever a behavior is inactive, it should test whether it should activate."""
         if not self.active_flag:
             sensor_count = 0
             for sensor in self.sensobs:
-                print("sensor", sensor)
-                print("sensor values", sensor.get_value())
-                print("ssensor_lim", self.sensor_limits[0])
-                if sensor.get_value() < self.sensor_limits[0]:
-                    self.active_flag = True
-                    self.bbcon.activate_behavior(self)
+                all_active_values = True
+                if sensor.get_value() > self.sensor_limits[sensor_count]:
+                    all_active_values = False
                     break
                 sensor_count += 1
+            if all_active_values:
+                self.active_flag = True
+                self.bbcon.activate_behavior(self)
 
     def update(self, sensobs):
         """the main interface between the bbcon and the behavior

@@ -4,6 +4,7 @@ import time
 
 from arbitrator import Arbitrator
 from sensob import Sensob
+from behavior import Behavior
 
 from Help_Classes.camera import Camera
 from Help_Classes.motors import Motors
@@ -17,15 +18,12 @@ class BBCON:
     def __init__(self):
         """ init """
         self.behaviors = []
-        self.active_behaviors = []
         self.sensobs = []
+        self.active_behaviors = []
         self.motobs = None
         self.arbitrator = Arbitrator(self.active_behaviors)
 
         #TODO: add more sensobs
-        self.add_sensob(Sensob(Ultrasonic()))
-        self.add_sensob(Sensob(ReflectanceSensors()))
-        self.add_sensob(Sensob(Camera()))
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -65,7 +63,20 @@ class BBCON:
         #TODO: Reset the sensobs
 
 
+def setup():
+    us = Sensob(Ultrasonic())
+    rs = Sensob(ReflectanceSensors())
+    cam = Sensob(Camera())
+    bbcon = BBCON()
+
+
+    stop = Behavior(bbcon, us, )  # Ultralyd
+
+
 def main():
+
+    setup()
+
     bbcon = BBCON()
     print("MAIN")
     ZumoButton().wait_for_press()

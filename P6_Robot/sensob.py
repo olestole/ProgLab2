@@ -17,7 +17,3 @@ class Sensob:
     def get_value(self):
         """ Get value from sensor wrapper """
         return self.sensor.get_value()
-        
-c = Camera()
-i = Imager()
-print(i)

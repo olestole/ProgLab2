@@ -23,8 +23,8 @@ class Motob:
         elif(self.value == "turnaround"):
             self.motor.left()
             self.motor.left()
-        elif(self.value == "left"):
+        elif(self.value == "turn_left"):
             self.motor.left()
-        elif(self.value == "right"):
+        elif(self.value == "turn_right"):
             self.motor.right()
             

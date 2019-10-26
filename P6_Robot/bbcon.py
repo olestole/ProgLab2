@@ -17,7 +17,7 @@ class BBCON:
     def __init__(self):
         """ init """
         self.sensobs = []
-        self.add_sensob(Sensob(Ultrasonic()))
+        #self.add_sensob(Sensob(Ultrasonic()))
         self.add_sensob(Sensob(ReflectanceSensors()))
         #self.add_sensob(Sensob(Camera()))
 
@@ -26,9 +26,9 @@ class BBCON:
         self.behaviors = []
         self.add_behavior(Behavior(self, [10000, 0, 0], "drive", 1))
         self.add_behavior(Behavior(self, [30, 0, 0], "stop", 10))
-        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_around", 9))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "turnaround", 9))
         self.add_behavior(Behavior(self, [10000, 0, 0], "turn_left", 8))
-        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_left", 7))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_right", 7))
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()
@@ -53,14 +53,16 @@ class BBCON:
         """constitutes the core BBCON activity"""
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
+            print("refSensors: ", sensob.get_value())
 
+        """
         for behavior in self.behaviors:     #Update all behaviors
             behavior.update(self.sensobs)
 
         fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
 
         self.motob.update(fav_behavior.sense_and_act())
-
+        """
         time.sleep(0.5)
 
 

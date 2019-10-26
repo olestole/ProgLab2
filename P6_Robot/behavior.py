@@ -48,10 +48,9 @@ class Behavior:
         if self.active_flag:
             sensor_count = 0
             for sensor in self.sensobs:
-                if sensor_count == 0:
-                    if sensor.get_value() > self.sensor_limits[0]:
-                        self.active_flag = False
-                        self.bbcon.deactivate_behavior(self)
+                if sensor.get_value() > self.sensor_limits[0]:
+                    self.active_flag = False
+                    self.bbcon.deactivate_behavior(self)
                     break
                 sensor_count += 1
 
@@ -60,7 +59,6 @@ class Behavior:
         if not self.active_flag:
             sensor_count = 0
             for sensor in self.sensobs:
-
                 print("sensor", sensor)
                 print("sensor values", sensor.get_value())
                 print("ssensor_lim", self.sensor_limits[0])
@@ -74,8 +72,8 @@ class Behavior:
         """the main interface between the bbcon and the behavior
         implement test s for becoming active or inactive"""
         self.sensobs = sensobs
-        self.consider_activation()
         self.consider_deactivation()
+        self.consider_activation()
 
     def sense_and_act(self):
         """the core computations performed by the behavior that use sensob readings

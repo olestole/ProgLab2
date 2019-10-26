@@ -17,11 +17,11 @@ class Motob:
         """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor(s)"""
         print("motob value: ", self.value)
         if(self.value == "drive"):
-            self.motor.forward(.3, 1)
+            self.motor.forward(.4, 0.2)
         elif(self.value == "stop"):
             self.motor.stop()
         elif(self.value == "turnaround"):
-            self.motor.left(.4, 2)
+            self.motor.left(.4, 4)
         elif(self.value == "turn_left"):
             self.motor.left()
         elif(self.value == "turn_right"):

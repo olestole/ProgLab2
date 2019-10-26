@@ -55,10 +55,12 @@ class BBCON:
         prod_count = 0
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
+            if(prod_count == 1):
+                print("Underlag", sensob.get_value())
             if(prod_count == 2):
                 image = Imager(False, sensob.get_value())
-                print("Camera blaa", image.get_color_rgb('blue'))
-                print("Camera vit", image.get_color_rgb('white'))
+                print("Camera blaa", image.get_pixel(20, 30))
+                print("Camera vit", list(image.getdata()))
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors

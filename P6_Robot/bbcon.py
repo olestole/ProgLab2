@@ -1,6 +1,7 @@
 """The highest-level class, BBCON (Behavior-Based Controller)"""
 
 import time
+import numpy
 
 from arbitrator import Arbitrator
 from sensob import Sensob
@@ -19,7 +20,7 @@ class BBCON:
         self.sensobs = []
         self.add_sensob(Sensob(Ultrasonic()))
         self.add_sensob(Sensob(ReflectanceSensors()))
-        #self.add_sensob(Sensob(Camera()))
+        self.add_sensob(Sensob(Camera()))
 
         self.motob = Motob()
 
@@ -54,8 +55,8 @@ class BBCON:
         prod_count = 0
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
-            if(prod_count == 3):
-                print("Camera", sensob.get_values())
+            if(prod_count == 2):
+                print("Camera", numpy.array(sensob.get_values()))
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors
@@ -67,9 +68,8 @@ class BBCON:
 
 
 def main():
-
-    bbcon = BBCON()
     ZumoButton().wait_for_press()
+    bbcon = BBCON()
     while True:
         bbcon.run_one_timestep()
 

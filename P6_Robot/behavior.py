@@ -49,9 +49,14 @@ class Behavior:
             sensor_count = 0
             for sensor in self.sensobs:
                 all_active_values = True
-                if sensor.get_value() > self.sensor_limits[sensor_count]:
-                    all_active_values = False
-                    break
+                if sensor_count == 0:
+                    if sensor.get_value() > self.sensor_limits[sensor_count]:
+                        all_active_values = False
+                        break
+                elif sensor_count == 1:
+                    if min(sensor.get_value()) > self.sensor_limits[sensor_count]:
+                        all_active_values = False
+                        break
                 sensor_count += 1
             if not all_active_values:
                 self.active_flag = False
@@ -63,9 +68,19 @@ class Behavior:
             sensor_count = 0
             for sensor in self.sensobs:
                 all_active_values = True
-                if sensor.get_value() > self.sensor_limits[sensor_count]:
-                    all_active_values = False
-                    break
+                if sensor_count == 0:
+                    if sensor.get_value() > self.sensor_limits[sensor_count]:
+                        all_active_values = False
+                        break
+                elif sensor_count == 1:
+                    if min(sensor.get_value()) > self.sensor_limits[sensor_count]:
+                        all_active_values = False
+                        break
+                """elif sensor_count == 2: 
+                    #TODO: check camera sensor values
+                    if min(sensor.get_value()) > self.sensor_limits[sensor_count]:
+                        all_active_values = False
+                        break"""
                 sensor_count += 1
             if all_active_values:
                 self.active_flag = True

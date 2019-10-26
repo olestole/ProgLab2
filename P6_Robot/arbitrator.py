@@ -3,7 +3,7 @@
 
 class Arbitrator:
     """Decides at each timestep: which behavior wins
-    and thus gets its motor recommendations transferred to the agent’s motobs,"""
+    and thus gets its motor recommendations transferred to the agent's motobs"""
 
     def __init__(self, active_behaviors):
         self.active_behaviors = active_behaviors

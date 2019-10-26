@@ -18,8 +18,8 @@ class BBCON:
         """ init """
         self.sensobs = []
         self.add_sensob(Sensob(Ultrasonic()))
-        self.add_sensob(Sensob(ReflectanceSensors()))
-        self.add_sensob(Sensob(Camera()))
+        #self.add_sensob(Sensob(ReflectanceSensors()))
+        #self.add_sensob(Sensob(Camera()))
 
         self.motob = Motob()
 

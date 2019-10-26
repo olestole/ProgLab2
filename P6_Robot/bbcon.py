@@ -11,7 +11,8 @@ from Help_Classes.camera import Camera
 from Help_Classes.reflectance_sensors import ReflectanceSensors 
 from Help_Classes.ultrasonic import Ultrasonic
 from Help_Classes.zumo_button import ZumoButton
-from Help_Classes.robodemo import dancer
+from Help_Classes.motors import Motors
+#from Help_Classes.robodemo import dancer
 
 class BBCON:
 
@@ -68,12 +69,15 @@ class BBCON:
 
 
 def main():
-
     print("Halla")
+
+    m = Motors()
+    m.forward(0.5, 10)
+
 
     bbcon = BBCON()
     ZumoButton().wait_for_press()
-    dancer()
+
     while True:
         bbcon.run_one_timestep()
 

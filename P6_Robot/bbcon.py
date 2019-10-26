@@ -26,10 +26,10 @@ class BBCON:
 
         self.behaviors = []
         self.add_behavior(Behavior(self, [10000, 10000, [10000, 10000, 10000]], "drive", 1))
-        self.add_behavior(Behavior(self, [30, 10000, [10000, 10000, 10000]], "stop", 10))
-        self.add_behavior(Behavior(self, [10000, 0.3, [10000, 10000, 10000]], "turnaround", 9))
-        self.add_behavior(Behavior(self, [10000, 10000, [170, 10000, 10000]], "turn_left", 8))
-        self.add_behavior(Behavior(self, [10000, 10000, [10000, 170, 10000]], "turn_right", 7))
+        self.add_behavior(Behavior(self, [30, 10000, [10000, 10000, 10000]], "stop", 3))
+        self.add_behavior(Behavior(self, [10000, 0.3, [10000, 10000, 10000]], "turnaround", 2))
+        self.add_behavior(Behavior(self, [10000, 10000, [170, 10000, 10000]], "turn_left", 5))
+        self.add_behavior(Behavior(self, [10000, 10000, [10000, 170, 10000]], "turn_right", 4))
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()

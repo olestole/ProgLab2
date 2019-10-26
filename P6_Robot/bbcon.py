@@ -24,7 +24,7 @@ class BBCON:
         self.motob = Motob()
 
         self.behaviors = []
-        self.add_behavior(Behavior(self, [0, 0, 0], "drive", 1))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "drive", 1))
         self.add_behavior(Behavior(self, [30, 0, 0], "stop", 10))
         self.active_behaviors = []
 

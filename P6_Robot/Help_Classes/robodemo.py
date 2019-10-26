@@ -16,6 +16,7 @@ from zumo_button import ZumoButton
 # This just moves the robot around in a fixed dance pattern.  It uses no sensors.
 
 def dancer():
+    print("in dancer()")
     ZumoButton().wait_for_press()
     m = Motors()
     m.forward(.2,3)

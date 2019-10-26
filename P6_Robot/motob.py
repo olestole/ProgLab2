@@ -6,7 +6,7 @@ from Help_Classes.motors import Motors
 class Motob:
 
     def __init__(self):
-        self.motor = Motors()
+        #self.motor = Motors()
         self.value = "" #value #a holder of the most recent motor recommendation sent to the motob
 
     def update(self, motor_recommendations):
@@ -17,9 +17,10 @@ class Motob:
     def operationalize(self):
         """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor(s)"""
         print("motob value: ", self.value)
+        m = Motors()
         if(self.value == "drive"):
-            self.motor.forward(.2,3)
+            m.forward(.2,3)
             print("between forw")
-            self.motor.forward(0.25, 0.5)
+            m.forward(0.25, 0.5)
         elif(self.value == "stop"):
-            self.motor.stop()
+            m.stop()

@@ -14,7 +14,7 @@ from Help_Classes.zumo_button import ZumoButton
 
 class BBCON:
 
-    def __init__(self, motobs):
+    def __init__(self):
         """ init """
         self.sensobs = []
         self.add_sensob(Sensob(Ultrasonic()))

@@ -70,13 +70,13 @@ class BBCON:
 
 def main():
     print("Halla")
+    ZumoButton().wait_for_press()
+    bbcon = BBCON()
 
     m = Motors()
     m.forward(0.5, 10)
 
 
-    bbcon = BBCON()
-    ZumoButton().wait_for_press()
 
     while True:
         bbcon.run_one_timestep()

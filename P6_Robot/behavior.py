@@ -58,7 +58,7 @@ class Behavior:
                         all_active_values = False
                         break
                 elif sensor_count == 2:
-                    if self.sensor_limits[sensor_count].index(170):
+                    if 170 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(170)
                         if sensor.get_value()[color] < self.sensor_limits[sensor_count][color]:
                             print("color no good, ", color)
@@ -84,7 +84,7 @@ class Behavior:
                         all_active_values = False
                         break
                 elif sensor_count == 2:
-                    if self.sensor_limits[sensor_count].index(170):
+                    if 170 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(170)
                         if sensor.get_value()[color] < self.sensor_limits[sensor_count][color]:
                             all_active_values = False

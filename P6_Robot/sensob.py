@@ -1,6 +1,6 @@
 import sys
 import os
-from P6_Robot.Help_Classes.camera import Camera
+from ProgLab2.P6_Robot.Help_Classes.camera import Camera
 from P6_Robot.Help_Classes.imager2 import Imager
 
 class Sensob:

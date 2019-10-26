@@ -84,10 +84,11 @@ class Behavior:
                         all_active_values = False
                         break
                 elif sensor_count == 2:
-                    color = self.sensor_limits[sensor_count].index(170)
-                    if sensor.get_value()[color] < self.sensor_limits[sensor_count][color]:
-                        all_active_values = False
-                        break
+                    if self.sensor_limits[sensor_count].index(170):
+                        color = self.sensor_limits[sensor_count].index(170)
+                        if sensor.get_value()[color] < self.sensor_limits[sensor_count][color]:
+                            all_active_values = False
+                            break
                 sensor_count += 1
             if all_active_values:
                 self.active_flag = True

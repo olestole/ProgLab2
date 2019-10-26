@@ -50,7 +50,7 @@ class Behavior:
             for sensor in self.sensobs:
                 if sensor.get_value() > self.sensor_limits[0]:
                     self.active_flag = False
-                    self.bbcon.deactivate_bahavior(self)
+                    self.bbcon.deactivate_behavior(self)
                     break
                 sensor_count += 1
 
@@ -65,7 +65,7 @@ class Behavior:
                 print("ssensor_lim", self.sensor_limits[0])
                 if sensor.get_value() < self.sensor_limits[0]:
                     self.active_flag = True
-                    self.bbcon.activate_bahavior(self)
+                    self.bbcon.activate_behavior(self)
                     break
                 sensor_count += 1
 

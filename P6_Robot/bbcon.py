@@ -56,7 +56,7 @@ class BBCON:
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
             if(prod_count == 2):
-                image = Imager(False, sensob.get_values())
+                image = Imager(False, sensob.get_value())
                 print("Camera", image.get_image())
             prod_count += 1
 

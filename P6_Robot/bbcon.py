@@ -32,8 +32,6 @@ class BBCON:
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()
-        while True:
-            bbcon.run_one_timestep()
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -71,6 +69,10 @@ class BBCON:
 def main():
     ZumoButton().wait_for_press()
     bbcon = BBCON()
+    i = 0
+    while i < 15:
+            bbcon.run_one_timestep()
+            i+=1
 
 if __name__ == "__main__":
     main()

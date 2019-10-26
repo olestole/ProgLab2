@@ -8,21 +8,27 @@ from behavior import Behavior
 from motob import Motob
 
 from Help_Classes.camera import Camera
-from Help_Classes.motors import Motors
 from Help_Classes.reflectance_sensors import ReflectanceSensors 
 from Help_Classes.ultrasonic import Ultrasonic
 from Help_Classes.zumo_button import ZumoButton
 
 class BBCON:
 
-
-    def __init__(self):
+    def __init__(self, motobs):
         """ init """
-        self.behaviors = []
         self.sensobs = []
+        self.add_sensob(Sensob(Ultrasonic()))
+        self.add_sensob(Sensob(ReflectanceSensors()))
+        self.add_sensob(Sensob(Camera()))
+
+        self.motob = Motob()
+
+        self.behaviors = []
+        self.add_behavior(Behavior(self, [0, 0, 0], "drive", 1))
+        self.add_behavior(Behavior(self, [30, 0, 0], "stop", 10))
         self.active_behaviors = []
-        self.motobs = None
-        self.arbitrator = Arbitrator(self.active_behaviors)
+
+        self.arbitrator = Arbitrator()
 
         #TODO: add more sensobs
 
@@ -44,33 +50,26 @@ class BBCON:
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
-        prod_count = 1
         for sensob in self.sensobs:  #Updates all sensobs
             sensob.update()
-            if prod_count == 1:
-                print("Ultrasensor value: ", sensob.get_value())
-            if prod_count == 2:
-                print("Reflect sensor value: ", sensob.get_value())
-            if prod_count == 3:
-                print("Camera value: ", sensob.get_value())
-            prod_count += 1
 
         for behavior in self.behaviors: #Update all behaviors
-            behavior.update()
+            behavior.update(self.sensob)
 
-        #self.arbitrator.choose_action(self.active_behaviors)
-        #TODO: Update the motobs based on these motor recommendations
+        fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
+
+        self.motob.update(fav_behavior.sense_and_act())
+
         time.sleep(0.5)
-        #TODO: Reset the sensobs
 
 
 def setup():
     us = Sensob(Ultrasonic())
     rs = Sensob(ReflectanceSensors())
     cam = Sensob(Camera())
-    stop_motor = Motob()
 
-    bbcon = BBCON()
+    bbcon = BBCON(motors)
+    bbcon.add_sensob(us, rs, cam)
 
 
     stop = Behavior(bbcon, us, 30, "stop")  # Ultralyd
@@ -78,7 +77,7 @@ def setup():
 
 def main():
 
-    setup()
+    #setup()
 
     bbcon = BBCON()
     print("MAIN")

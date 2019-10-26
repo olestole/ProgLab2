@@ -19,56 +19,60 @@ class Behavior:
     def __init__(
             self,
             bbcon,
-            sensobs,
+            sensor_limits,
+            #sensobs,
             motor_recommendations,
             priority,
-            match_degree,
-            active_flag=False,
-            halt_request=False):
+            active_flag=False):
+            #halt_request=False):
         self.bbcon = bbcon  # pointer to the controller that uses this behavior.,
         # a list of all sensobs that this behavior uses.
-        self.sensobs = sensobs
+        self.sensor_limits = sensor_limits
         # list of recommendations, 1/motob, that this behavior provides to the
         # arbitrator.
         self.motor_recommendations = motor_recommendations  # a list of recommendations
         self.active_flag = active_flag  # is behavior active or not
-        self.halt_request = halt_request  # request the robot to completely halt activity
+        #self.halt_request = halt_request  # request the robot to completely halt activity
         # a static, pre-defined value indicating the importance of this
         # behavior
         self.priority = priority
         # a real number in the range [0, 1] indicating the degree to which
         # current conditions warrant the performance of this behavior.
-        self.match_degree = match_degree
+        #self.match_degree = match_degree
         # arbitrator uses as the basis for selecting the winning behavior for a
         # timestep.
-        self.weigth = priority * match_degree
+        #self.weigth = priority * match_degree
 
     def consider_deactivation(self):
         """ whenever a behavior is active, it should test whether it should deactivate."""
         if self.active_flag:
-            pass
-            #considers deactivation based on self.sensobs values
+            sensor_count = 0
+            for sensor in self.sensobs:
+                if sensor.get_value() > self.sensor_limit[0]:
+                    self.active_flag = False
+                    self.bbcon.deactivate_bahavior(self)
+                    break
+                sensor_count += 1
 
     def consider_activation(self):
         """whenever a behavior is inactive, it should test whether it should activate."""
         if not self.active_flag:
-            pass
-            #considers activation based on self.sensobs values
+            sensor_count = 0
+            for sensor in self.sensobs:
+                if sensor.get_value() < self.sensor_limit[0]:
+                    self.active_flag = True
+                    self.bbcon.activate_bahavior(self)
+                    break
+                sensor_count += 1
 
-    def update(self, bbcon, sensobs):
+    def update(self, sensobs):
         """the main interface between the bbcon and the behavior
         implement test s for becoming active or inactive"""
-
-        # self.seonsobs = sensobs
-
-        # faa inn sensorverdier
-
-        # kalle consider_activate and consider_deactive
-
-        # bbcon.activate_bahavior(self) / bbcon.deactivate_bahavior(self)
+        self.sensobs = sensobs
+        self.consider_activation()
+        self.consider_deactivation()
 
     def sense_and_act(self):
         """the core computations performed by the behavior that use sensob readings
         to produce motor recommendations (and halt requests)."""
-
-        # noe med motobs
+        return self.motor_recommendations

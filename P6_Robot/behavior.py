@@ -59,7 +59,7 @@ class Behavior:
         if not self.active_flag:
             sensor_count = 0
             for sensor in self.sensobs:
-                if sensor.get_value() < self.sensor_limit[0]:
+                if sensor.get_value() < self.sensor_limits[0]:
                     self.active_flag = True
                     self.bbcon.activate_bahavior(self)
                     break

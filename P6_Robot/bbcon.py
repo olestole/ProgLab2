@@ -25,11 +25,11 @@ class BBCON:
         self.motob = Motob()
 
         self.behaviors = []
-        self.add_behavior(Behavior(self, [10000, 10000, 10000], "drive", 1))
-        self.add_behavior(Behavior(self, [30, 10000, 10000], "stop", 10))
-        self.add_behavior(Behavior(self, [10000, 0.4, 10000], "turnaround", 9))
-        #self.add_behavior(Behavior(self, [10000, 10000, 10000], "turn_left", 8))
-        #self.add_behavior(Behavior(self, [10000, 10000, 10000], "turn_right", 7))
+        self.add_behavior(Behavior(self, [10000, 10000, [10000, 10000, 10000]], "drive", 1))
+        self.add_behavior(Behavior(self, [30, 10000, [10000, 10000, 10000]], "stop", 10))
+        self.add_behavior(Behavior(self, [10000, 0.3, [10000, 10000, 10000]], "turnaround", 9))
+        self.add_behavior(Behavior(self, [10000, 10000, [170, 10000, 10000]], "turn_left", 8))
+        self.add_behavior(Behavior(self, [10000, 10000, [10000, 170, 10000]], "turn_right", 7))
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()
@@ -55,8 +55,6 @@ class BBCON:
         prod_count = 0
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
-            if(prod_count == 1):
-                print("Underlag", sensob.get_value())
             if(prod_count == 2):
                 image = Imager(False, sensob.get_value())
                 print("Camera pixel", image.get_pixel(20, 30))

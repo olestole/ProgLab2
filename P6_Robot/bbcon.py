@@ -7,6 +7,7 @@ from sensob import Sensob
 from behavior import Behavior
 from motob import Motob
 
+from Help_Classes.imager2 import Imager
 from Help_Classes.camera import Camera
 from Help_Classes.reflectance_sensors import ReflectanceSensors 
 from Help_Classes.ultrasonic import Ultrasonic
@@ -54,8 +55,9 @@ class BBCON:
         prod_count = 0
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
-            #if(prod_count == 2):
-            #    print("Camera", numpy.array(sensob.get_values()))
+            if(prod_count == 2):
+                image = Imager(False, sensob.get_values())
+                print("Camera", image.get_image())
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors
@@ -63,7 +65,6 @@ class BBCON:
 
         fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
         self.motob.update(fav_behavior.sense_and_act())
-        time.sleep(0.5)
 
 
 def main():

@@ -20,7 +20,7 @@ class BBCON:
         """ init """
         self.sensobs = []
         self.add_sensob(Sensob(Ultrasonic()))
-        #self.add_sensob(Sensob(ReflectanceSensors()))
+        self.add_sensob(Sensob(ReflectanceSensors()))
         #self.add_sensob(Sensob(Camera()))
 
         self.motob = Motob()
@@ -28,11 +28,12 @@ class BBCON:
         self.behaviors = []
         self.add_behavior(Behavior(self, [10000, 0, 0], "drive", 1))
         self.add_behavior(Behavior(self, [30, 0, 0], "stop", 10))
+        self.add_behavior(Behavior(self, [0, 0, 0], "turn_around", 9))
+        self.add_behavior(Behavior(self, [0, 0, 0], "turn_left", 8))
+        self.add_behavior(Behavior(self, [0, 0, 0], "turn_left", 7))
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()
-
-        #TODO: add more sensobs
 
     def add_behavior(self, behavior):
         """append a newly-created behavior onto the behaviors list"""
@@ -52,10 +53,10 @@ class BBCON:
 
     def run_one_timestep(self):
         """constitutes the core BBCON activity"""
-        for sensob in self.sensobs:  #Updates all sensobs
+        for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
 
-        for behavior in self.behaviors: #Update all behaviors
+        for behavior in self.behaviors:     #Update all behaviors
             behavior.update(self.sensobs)
 
         fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
@@ -65,23 +66,11 @@ class BBCON:
         time.sleep(0.5)
 
 
-def setup():
-    us = Sensob(Ultrasonic())
-    rs = Sensob(ReflectanceSensors())
-    cam = Sensob(Camera())
-
-    bbcon = BBCON(motors)
-    bbcon.add_sensob(us, rs, cam)
-
-
-    stop = Behavior(bbcon, us, 30, "stop")  # Ultralyd
-
-
 def main():
 
-    #setup()
     m = Motors()
     m.backward()
+    m.forward()
 
     """bbcon = BBCON()
     print("MAIN")

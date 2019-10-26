@@ -2,7 +2,7 @@ __author__ = 'keithd'
 
 from time import sleep
 import random
-import imager2 as IMR
+#import imager2 as IMR
 from reflectance_sensors import ReflectanceSensors
 from camera import Camera
 from motors import Motors

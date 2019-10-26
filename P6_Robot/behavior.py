@@ -46,21 +46,29 @@ class Behavior:
     def consider_deactivation(self):
         """ whenever a behavior is active, it should test whether it should deactivate."""
         if self.active_flag:
-            print("considers deactivation")
+            pass
+            #considers deactivation based on self.sensobs values
 
     def consider_activation(self):
         """whenever a behavior is inactive, it should test whether it should activate."""
         if not self.active_flag:
-            print("considers activation")
+            pass
+            #considers activation based on self.sensobs values
 
-    def update(self):
+    def update(self, bbcon, sensobs):
         """the main interface between the bbcon and the behavior
-        TODO: implement test s for becoming active or inactive"""
-        self.sense_and_act()
+        implement test s for becoming active or inactive"""
 
+        # self.seonsobs = sensobs
 
+        # faa inn sensorverdier
 
+        # kalle consider_activate and consider_deactive
+
+        # bbcon.activate_bahavior(self) / bbcon.deactivate_bahavior(self)
 
     def sense_and_act(self):
         """the core computations performed by the behavior that use sensob readings
         to produce motor recommendations (and halt requests)."""
+
+        # noe med motobs

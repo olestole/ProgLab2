@@ -60,7 +60,7 @@ class Behavior:
                         all_active_values = False
                         break
                 elif sensor_count == 2:
-                    if 170 in self.sensor_limits[sensor_count]:
+                    if 200 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(200)
                         image = Imager(False, sensor.get_value())
                         if image.get_pixel(20, 30)[color] < self.sensor_limits[sensor_count][color]:
@@ -87,7 +87,7 @@ class Behavior:
                         all_active_values = False
                         break
                 elif sensor_count == 2:
-                    if 170 in self.sensor_limits[sensor_count]:
+                    if 200 in self.sensor_limits[sensor_count]:
                         color = self.sensor_limits[sensor_count].index(200)
                         image = Imager(False, sensor.get_value())
                         if image.get_pixel(20, 30)[color] < self.sensor_limits[sensor_count][color]:

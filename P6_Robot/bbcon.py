@@ -55,8 +55,8 @@ class BBCON:
         prod_count = 0
         for sensob in self.sensobs:         #Updates all sensobs
             sensob.update()
-            if(prod_count == 2):
-                print("Camera", numpy.array(sensob.get_values()))
+            #if(prod_count == 2):
+            #    print("Camera", numpy.array(sensob.get_values()))
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors

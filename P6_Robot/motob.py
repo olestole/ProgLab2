@@ -2,12 +2,11 @@
 
 from Help_Classes.motors import Motors
 
-
 class Motob:
 
     def __init__(self):
         self.motor = Motors()
-        self.value = "" #value #a holder of the most recent motor recommendation sent to the motob
+        self.value = ""
 
     def update(self, motor_recommendations):
         """receive a new motor recommendation, load it into the value slot, and operationalize it"""
@@ -21,3 +20,11 @@ class Motob:
             self.motor.forward(.2,3)
         elif(self.value == "stop"):
             self.motor.stop()
+        elif(self.value == "turnaround"):
+            self.motor.left()
+            self.motor.left()
+        elif(self.value == "left"):
+            self.motor.left()
+        elif(self.value == "right"):
+            self.motor.right()
+            

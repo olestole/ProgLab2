@@ -7,8 +7,6 @@ from sensob import Sensob
 from behavior import Behavior
 from motob import Motob
 
-from Help_Classes.motors import Motors
-
 from Help_Classes.camera import Camera
 from Help_Classes.reflectance_sensors import ReflectanceSensors 
 from Help_Classes.ultrasonic import Ultrasonic
@@ -28,9 +26,9 @@ class BBCON:
         self.behaviors = []
         self.add_behavior(Behavior(self, [10000, 0, 0], "drive", 1))
         self.add_behavior(Behavior(self, [30, 0, 0], "stop", 10))
-        self.add_behavior(Behavior(self, [0, 0, 0], "turn_around", 9))
-        self.add_behavior(Behavior(self, [0, 0, 0], "turn_left", 8))
-        self.add_behavior(Behavior(self, [0, 0, 0], "turn_left", 7))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_around", 9))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_left", 8))
+        self.add_behavior(Behavior(self, [10000, 0, 0], "turn_left", 7))
         self.active_behaviors = []
 
         self.arbitrator = Arbitrator()
@@ -68,15 +66,10 @@ class BBCON:
 
 def main():
 
-    m = Motors()
-    m.backward()
-    m.forward()
-
-    """bbcon = BBCON()
-    print("MAIN")
+    bbcon = BBCON()
     ZumoButton().wait_for_press()
     while True:
-        bbcon.run_one_timestep()"""
+        bbcon.run_one_timestep()
 
 if __name__ == "__main__":
     main()

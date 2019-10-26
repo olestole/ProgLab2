@@ -57,7 +57,8 @@ class BBCON:
             sensob.update()
             if(prod_count == 2):
                 image = Imager(False, sensob.get_value())
-                print("Camera", image.get_image())
+                print("Camera blaa", image.get_color_rgb('blue'))
+                print("Camera vit", image.get_color_rgb('white'))
             prod_count += 1
 
         for behavior in self.behaviors:     #Update all behaviors

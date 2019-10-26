@@ -1,7 +1,7 @@
 import sys
 import os
-#from Help_Classes.camera import Camera
-from Help_Classes.imager2 import Imager
+from P6_Robot.Help_Classes.camera import Camera
+from P6_Robot.Help_Classes.imager2 import Imager
 
 class Sensob:
 

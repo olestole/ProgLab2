@@ -21,7 +21,7 @@ class Motob:
         elif(self.value == "stop"):
             self.motor.stop()
         elif(self.value == "turnaround"):
-            self.motor.left(.4, 4)
+            self.motor.left(.4, 2.5)
         elif(self.value == "turn_left"):
             self.motor.left(.4, 1.5)
         elif(self.value == "turn_right"):

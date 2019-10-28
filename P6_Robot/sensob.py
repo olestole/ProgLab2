@@ -1,9 +1,8 @@
-import sys
-import os
-from Help_Classes.camera import Camera
-from Help_Classes.imager2 import Imager
+"""Sensob class"""
+
 
 class Sensob:
+    """Sensor object class"""
 
     sensor = None
 
@@ -11,7 +10,7 @@ class Sensob:
         self.sensor = sensor  # Sensor(s)
 
     def update(self):
-        """force the sensob to fetch the relevant sensor value(s) and convert them into the pre-processed sensob value"""
+        """force the sensob to fetch the relevant sensor value(s) and convert them into the"""
         self.value = self.sensor.update()
 
     def get_value(self):

@@ -66,9 +66,6 @@ class BBCON:
         fav_behavior = self.arbitrator.choose_action(self.active_behaviors)
         self.motob.update(fav_behavior.sense_and_act())
 
-        #time.sleep(0.5)
-
-
 def main():
     ZumoButton().wait_for_press()
     bbcon = BBCON()

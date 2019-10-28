@@ -28,7 +28,7 @@ class BBCON:
         self.add_behavior(Behavior(self, [10000, 10000, [10000, 10000, 10000]], "drive", 1))
         self.add_behavior(Behavior(self, [30, 10000, [10000, 10000, 10000]], "stop", 3))
         self.add_behavior(Behavior(self, [10000, 0.3, [10000, 10000, 10000]], "turnaround", 2))
-        self.add_behavior(Behavior(self, [10000, 10000, [220, 10000, 10000]], "turn_left", 5))
+        self.add_behavior(Behavior(self, [10000, 10000, [210, 10000, 10000]], "turn_left", 5))
         #self.add_behavior(Behavior(self, [10000, 10000, [10000, 200, 10000]], "turn_right", 4))
         self.active_behaviors = []
 

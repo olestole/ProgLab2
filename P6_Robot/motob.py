@@ -21,9 +21,9 @@ class Motob:
             self.motor.forward(.3, 0.5)
         elif self.value == "stop" :
             self.motor.stop()
-        elif self.value == "turnaround":
-            self.motor.left(.4, 4)
-        elif self.value == "turn_left":
+        elif(self.value == "turnaround"):
             self.motor.left(.4, 1.5)
-        elif self.value == "turn_right":
+        elif(self.value == "turn_left"):
+            self.motor.left(.4, .8)
+        elif(self.value == "turn_right"):
             self.motor.right(.4, 1.5)

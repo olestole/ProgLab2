@@ -67,6 +67,7 @@ class BBCON:
         self.motob.update(fav_behavior.sense_and_act())
 
 def main():
+    BBCON()
     ZumoButton().wait_for_press()
     bbcon = BBCON()
     i = 0

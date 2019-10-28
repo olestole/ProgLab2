@@ -2,6 +2,7 @@
 
 from Help_Classes.motors import Motors
 
+
 class Motob:
 
     def __init__(self):
@@ -14,11 +15,11 @@ class Motob:
         self.operationalize()
 
     def operationalize(self):
-        """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor(s)"""
+        """convert a motor recommendation into one or more motor settings, which are sent to the corresponding motor"""
         print("motob value: ", self.value)
-        if(self.value == "drive"):
+        if self.value == "drive" :
             self.motor.forward(.3, 0.5)
-        elif(self.value == "stop"):
+        elif self.value == "stop" :
             self.motor.stop()
         elif(self.value == "turnaround"):
             self.motor.left(.4, 1.5)
@@ -26,4 +27,3 @@ class Motob:
             self.motor.left(.4, .8)
         elif(self.value == "turn_right"):
             self.motor.right(.4, 1.5)
-            
